@@ -1,0 +1,102 @@
+body {
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
+    min-height: 100px; 
+    font-size: 20px;
+} 
+
+.nav-link { color: #1a1a1a; }
+/*.nav-link:hover { color: #1a1a1a; }*/
+
+.logo {
+    min-width: 80px;
+    max-width: 80px;
+}
+
+.navbar-toggler { font-size: 40px; }
+.navbar-toggler:focus { outline: none; }
+
+#user {
+    margin-top: 50px;
+    text-align: center;
+}
+
+#divider {
+    margin: 40px;
+    border-bottom: 2px solid #f5f5f5;
+}
+
+.carousel {
+    min-height: 240px;
+    padding: 40px;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.carousel p {
+    font-size: 20px;
+    font-weight: 400;
+    color: #1a1a1a;
+}
+
+.rating i {
+    color: #ffb944;
+    font-size: 26px;
+}
+
+.form-control {
+    font-size: 14px;
+    border: 1px solid #cacaca;
+    padding: 15px;
+    border-radius: 2px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+#form-reserva{
+    margin-top: 100px;
+}
+
+#blaBla{
+    margin-top: 120px;
+}
+
+.bg-dark { background-color: #1a1a1a; }
+
+#footer {
+    padding: 10px 0;
+    text-align: center;
+    bottom: 0px;
+    align-self: flex-end;
+}
+
+#footer a {
+    color: #ffffff;
+}
+
+#footer a:hover {
+    color: #ffffff;
+}
+
+#footer .list-inline .list-inline-item {
+    padding: 10px 15px;
+}
+
+.topmargin-xs { margin-top: 15px !important;}
+.topmargin-sm { margin-top: 30px !important;} 
+.topmargin-lg { margin-top: 60px !important;} 
+
+
+@media (max-width: 575.98px){
+    h1 { font-size: 40px; line-height: normal; }
+    .carousel-item p { font-size: 20px;}
+    .footer-menu { display: block; padding: 20px 0 !important; font-size: 20px; }
+}
+
+
