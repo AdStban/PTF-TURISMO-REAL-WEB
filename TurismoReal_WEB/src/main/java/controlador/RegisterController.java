@@ -27,6 +27,9 @@ public class RegisterController extends HttpServlet {
             String correo = request.getParameter("txtCorreo");
             String pass = request.getParameter("txtPassword");
 
+            String passHash = dao.CryptoHash(pass);
+            String cryptoPass =passHash.toUpperCase();
+            
             int existe = dao.validaExistencia(correo);
 
             if (existe > 0) {
@@ -34,7 +37,7 @@ public class RegisterController extends HttpServlet {
                 request.getRequestDispatcher("register.jsp").forward(request, response);
             } else {
                 u.setCorreo(correo);
-                u.setPass(pass);
+                u.setPass(cryptoPass);
                 dao.registrar(u);
 
                 request.setAttribute("mensaje", "Se ha registrado correctamente el usuario.");
