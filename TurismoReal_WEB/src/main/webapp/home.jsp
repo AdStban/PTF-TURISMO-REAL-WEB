@@ -85,7 +85,7 @@
             <div class="site-section site-section-sm pb-0">
                 <div class="container">
                     <div class="row">
-                        <form class="form-search col-md-12" style="margin-top: -100px;">
+                    <form name="formBuscar" action="BusquedaController" method="post" class="form-search col-md-12" style="margin-top: -100px;">
                             <div class="row  align-items-end">
                                 <div class="col-md-3">
                                     <label for="list-types">Elige el lugar</label>
@@ -93,32 +93,34 @@
                                     <div class="select-wrap">
                                         <span class="icon icon-arrow_drop_down"></span>
 
-                                        <select name="list-types" id="list-types" class="form-control d-block rounded-0">
+                                        <select name="slcLugar" id="list-types" class="form-control d-block rounded-0">
                                             <option value="0">Selecione lugar...</option>
                                         <jsp:useBean class="dao.ComunaDAO" id="comunaDAO"></jsp:useBean>  
                                         <c:forEach items="${comunaDAO.listar()}" var="comuna">
 
-                                            <option value="${comuna.getId_comuna()}">${comuna.getNombre_comuna()}</option>
+                                            <option value="${comuna.getNombre_comuna()}">${comuna.getNombre_comuna()}</option>
                                         </c:forEach>
-                                    </select>
+                                        </select>
 
                                 </div>
 
                             </div>
                             <div class="col-md-3">
                                 <label for="offer-types">Check in</label>
-                                <div class="datepicker-inline">
-                                    <input type="text" class="datepicker" placeholder="Desde">
-                                </div>
+                                <!--<div class="datepicker-inline">
+                                    <input type="text" name="txtDesde" class="datepicker" placeholder="Desde">
+                                </div>-->
+                                <input type="date" name="txtDesde">
                             </div>
                             <div class="col-md-3">
                                 <label for="offer-types">Check out</label>
-                                <div class="datepicker-inline">
-                                    <input type="text" class="datepicker" placeholder="Hasta">
-                                </div>
+                                <!--<div class="datepicker-inline">
+                                    <input type="text" name="txtHasta" class="datepicker" placeholder="Hasta">
+                                </div>-->
+                                <input type="date" name="txtHasta">
                             </div>
                             <div class="col-md-3">
-                                <input type="submit" class="btn btn-success text-white btn-block rounded-0" value="Buscar">
+                                <input type="submit" class="btn btn-success text-white btn-block rounded-0" name="accion" value="Buscar">
                             </div>
                         </div>
                     </form>
@@ -156,20 +158,16 @@
                                         <strong class="property-price text-primary mb-3 d-block text-success">$${depto.getCosto_departamento()}</strong>
                                         <ul class="property-specs-wrap mb-3 mb-lg-0">
                                             <li>
-                                                <span class="property-specs">Beds</span>
-                                                <span class="property-specs-number">2 <sup>+</sup></span>
+                                                <span class="property-specs">Dormitorios</span>
+                                                <span class="property-specs-number">${depto.getHabitaciones()} <sup>+</sup></span>
 
                                             </li>
                                             <li>
-                                                <span class="property-specs">Baths</span>
-                                                <span class="property-specs-number">2</span>
+                                                <span class="property-specs">Baño</span>
+                                                <span class="property-specs-number">${depto.getBanio()}</span>
 
                                             </li>
-                                            <li>
-                                                <span class="property-specs">SQ FT</span>
-                                                <span class="property-specs-number">7,000</span>
-
-                                            </li>
+                                            
                                         </ul>
 
                                     </div>

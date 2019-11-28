@@ -7,17 +7,19 @@ public class Departamento {
     String direccion_departamento;
     String nom_comuna;
     int habitaciones;
+    int banio;
     
     public Departamento() {
     }
 
-    public Departamento(int id_departamento, int costo_departamento, String tipo_departamento, String direccion_departamento, String nom_comuna, int habitaciones) {
+    public Departamento(int id_departamento, int costo_departamento, String tipo_departamento, String direccion_departamento, String nom_comuna, int habitaciones, int banio) {
         this.id_departamento = id_departamento;
         this.costo_departamento = costo_departamento;
         this.tipo_departamento = tipo_departamento;
         this.direccion_departamento = direccion_departamento;
         this.nom_comuna = nom_comuna;
         this.habitaciones = habitaciones;
+        this.banio = banio;
     }
     
     public int getId_departamento() {
@@ -67,5 +69,15 @@ public class Departamento {
     public void setHabitaciones(int habitaciones) {
         this.habitaciones = habitaciones;
     }
+
+    public int getBanio() {
+        return banio;
+    }
+
+    public void setBanio(int banio) {
+        this.banio = banio;
+    }
+    
+    
 
 }
