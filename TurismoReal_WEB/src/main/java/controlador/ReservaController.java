@@ -8,12 +8,19 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 
 @WebServlet(name = "ReservaController", urlPatterns = {"/ReservaController"})
 public class ReservaController extends HttpServlet {
@@ -28,7 +35,7 @@ public class ReservaController extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String accion = request.getParameter("accion");
         String opcionServicio = request.getParameter("opcionServicio");
 
@@ -51,20 +58,27 @@ public class ReservaController extends HttpServlet {
                 int servicio = 0;
                 int idServicio = Integer.parseInt(request.getParameter("opcionServicio"));
                 int valor = dao.retornoValorServicio(idServicio);
+                String nombreServicio;
                 if (opcionServicio != null) {
                     if (opcionServicio.equals("1")) {
+                        nombreServicio = "Transporte";
                         servicio = 1;
+                        request.getSession().setAttribute("nomServicio", nombreServicio);
                         request.getSession().setAttribute("idServicio", servicio);
                         valorServicio = valor;
 
                     }
                     if (opcionServicio.equals("2")) {
+                        nombreServicio = "Paquete turístico";
                         servicio = 2;
+                        request.getSession().setAttribute("nomServicio", nombreServicio);
                         request.getSession().setAttribute("idServicio", servicio);
                         valorServicio = valor;
                     }
                     if (opcionServicio.equals("3")) {
+                        nombreServicio = "Paquete transporte + paquete turístico";
                         servicio = 3;
+                        request.getSession().setAttribute("nomServicio", nombreServicio);
                         request.getSession().setAttribute("idServicio", servicio);
                         valorServicio = valor;
                     }
@@ -136,6 +150,9 @@ public class ReservaController extends HttpServlet {
                 break;
             case "registrarReserva":
                 this.registrarReserva(request, response);
+                break;
+            case "enviarCorreo":
+                this.enviarCorreo(request, response);
                 break;
 
             default:
@@ -223,20 +240,14 @@ public class ReservaController extends HttpServlet {
             dr.setId_reserva(idReserva);
 
             String verifica = dao.registrarDetalle(dr);
-            int idServicio = (Integer)request.getSession().getAttribute("idServicio");
-            
-            if (idServicio==0) {
-                if(verifica!=null){
-                    request.setAttribute("mensaje", "Reserva registrada correctamente");
-                    request.getRequestDispatcher("home.jsp").forward(request, response);
-                }
-                else{
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
-                } 
-            }else{
+            //int idServicio = (Integer) request.getSession().getAttribute("idServicio");
+
+            if (verifica != null) {
+                request.getRequestDispatcher("enviandoCorreo.jsp").forward(request, response);
+
+            } else {
                 this.registrarServicio(request, response);
             }
-            
 
         } catch (Exception ex) {
             request.setAttribute("mensaje", "Ha ocurrido un error al ingresar la reserva, " + ex);
@@ -247,23 +258,131 @@ public class ReservaController extends HttpServlet {
 
     private void registrarServicio(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        int idServicio = (Integer)request.getSession().getAttribute("idServicio");
+
+        int idServicio = (Integer) request.getSession().getAttribute("idServicio");
         int idDetalle = dao.retornaIdDetalle();
-        
+
         int verifica = dao.registrarServicio(idDetalle, idServicio);
-        
-        if(verifica != 0){
-            request.setAttribute("mensaje", "Reserva registrada correctamente");
-            request.getRequestDispatcher("home.jsp").forward(request, response);
-        }else{
+
+        if (verifica == 1) {
+
+            request.getRequestDispatcher("enviandoCorreo.jsp").forward(request, response);
+
+        } else {
             request.setAttribute("mensaje", "Ha ocurrido un error");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
-    
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    private void enviarCorreo(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String USER_NAME = "info.turismoreal";  //CORREO DE TURISMO REAL ANTES DEL @
+        String PASSWORD = "Duoc2019"; //LA CONTRASEÑA
+
+        String RECIPIENT = request.getParameter("txtCorreo");
+
+        String from = USER_NAME;
+        String pass = PASSWORD;
+        String[] to = {RECIPIENT}; // Destinatario
+
+        String pagado = request.getParameter("txtTotal");
+        String diasReservados = request.getParameter("txtDias");
+        String lugar = request.getParameter("txtLugar");
+
+        String servicioExtra = request.getParameter("txtServicio");
+        String nomServicio = request.getParameter("txtNomServicio");
+        String subject = "Comprobante de reserva - TURISMO REAL";
+        String body;
+        if (servicioExtra.equals("0")) {
+            body = "Comprobante de reserva por internet\n"
+                    + "Estimado Usuario:\n"
+                    + "\n"
+                    + "Turismo Real agradece su preferencia y le informa que se ha realizado de manera satisfactoria el pago de la reserva"
+                    + " por un valor de $ " + pagado + " CLP, el cual ha sido cargado a su tarjeta bancaria.\n"
+                    + "\n"
+                    + "Detalles de la reserva\n"
+                    + "Email del arrendatario :" + RECIPIENT + "\n"
+                    + "País : Chile\n"
+                    + "Resumen : Se ha reservado " + diasReservados + " días, en la ciudad de " + lugar + ".\n"
+                    + "\n"
+                    + "NOTA IMPORTANTE: El cargo estará visible en su cuenta bancaria con el nombre de TURISMO-REAL.\n"
+                    + "\n"
+                    + "Saludos Cordiales,\n"
+                    + "EQUIPO CERV\n"
+                    + "";
+        } else { 
+            body = "Comprobante de reserva por internet\n"
+                    + "Estimado Usuario:\n"
+                    + "\n"
+                    + "Turismo Real agradece su preferencia y le informa que se ha realizado de manera satisfactoria el pago de la reserva"
+                    + " por un valor de $ " + pagado + " CLP, el cual ha sido cargado a su tarjeta bancaria.\n"
+                    + "\n"
+                    + "Detalles de la reserva\n"
+                    + "Email del arrendatario :" + RECIPIENT + "\n"
+                    + "País : Chile\n"
+                    + "Resumen : Se ha reservado " + diasReservados + " día/s, en la ciudad de " + lugar + "\n"
+                    + "Servicio extra contratado: " + nomServicio + "\n"
+                    + "\n"
+                    + "NOTA IMPORTANTE: El cargo estará visible en su cuenta bancaria con el nombre de TURISMO-REAL.\n"
+                    + "\n"
+                    + "Saludos Cordiales,\n"
+                    + "EQUIPO CERV\n"
+                    + "";
+        }
+
+        Properties props = System.getProperties();
+        String host = "smtp.gmail.com";
+
+        props.put("mail.smtp.starttls.enable", "true");
+
+        props.put("mail.smtp.ssl.trust", host);
+        props.put("mail.smtp.user", from);
+        props.put("mail.smtp.password", pass);
+        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", "true");
+
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage message = new MimeMessage(session);
+
+        try {
+
+            message.setFrom(new InternetAddress(from));
+            InternetAddress[] toAddress = new InternetAddress[to.length];
+
+            // To get the array of addresses
+            for (int i = 0; i < to.length; i++) {
+                toAddress[i] = new InternetAddress(to[i]);
+            }
+
+            for (int i = 0; i < toAddress.length; i++) {
+                message.addRecipient(Message.RecipientType.TO, toAddress[i]);
+            }
+
+            message.setSubject(subject);
+            message.setText(body);
+
+            Transport transport = session.getTransport("smtp");
+
+            transport.connect(host, from, pass);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+            request.setAttribute("mensaje", "Reserva registrada correctamente");
+            request.getRequestDispatcher("home.jsp").forward(request, response);
+
+        } catch (AddressException ae) {
+            ae.printStackTrace();
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } catch (MessagingException me) {
+            me.printStackTrace();
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+
+        //dao.enviarCorreoReserva(from, pass, to, subject, body);
+    }
+
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
