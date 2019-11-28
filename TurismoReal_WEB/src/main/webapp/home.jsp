@@ -44,33 +44,98 @@
 
         <section id="user">
             <div class="container">
-                <h2>Bienvenido/a <c:out value="${email}"></c:out></h2>
-                    <div class="dropdown-divider" id="divider"></div>
-                    <h2>Recomendados para ti</h2>
+                <h2>Bienvenido(a) <c:out value="${email}"></c:out></h2>
                 </div>
             </section>
-            <section id="form-reserva">
+            <!---------------------------------------------------------------------------------------------->
+            <div class="site-loader"></div>
 
+
+
+            <div class="slide-one-item home-slider owl-carousel">
+
+                <div class="site-blocks-cover overlay" style="background-image: url(images/reñaca.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+                    <div class="container">
+                        <div class="row align-items-center justify-content-center text-center">
+                            <div class="col-md-10">
+                                <span class="d-inline-block bg-success text-white px-3 mb-3 property-offer-type rounded">Premium</span>
+                                <h1 class="mb-2">Av. Borgoño 15180</h1>
+                                <p class="mb-5"><strong class="h2 text-success font-weight-bold">$100.000</strong></p>
+                                <p><a href="#info-dep" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">Ver departamentos</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+
+                <div class="site-blocks-cover overlay" style="background-image: url(images/serena.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+                    <div class="container">
+                        <div class="row align-items-center justify-content-center text-center">
+                            <div class="col-md-10">
+                                <span class="d-inline-block bg-success text-white px-3 mb-3 property-offer-type rounded">Premium</span>
+                                <h1 class="mb-2">Av del Mar 1700</h1>
+                                <p class="mb-5"><strong class="h2 text-success font-weight-bold">$120.000</strong></p>
+                                <p><a href="#info-dep" class="btn btn-white btn-outline-white py-3 px-5 rounded-0 btn-2">Ver departamentos</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+
+            </div>
+
+            <div class="site-section site-section-sm pb-0">
                 <div class="container">
-                    <div class="col-md-6 topmargin-sm">
-                        <h2 >Escriba a que ciudad desea ir</h2>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-gorup">
-                                    <label style="margin-top: 5px;">Dónde</label>
-                                    <input type="search" id="searchTerm" name="txtComuna" class="form-control" onkeyup="doSearch()" placeholder="Cualquier lugar" required> 
+                    <div class="row">
+                        <form class="form-search col-md-12" style="margin-top: -100px;">
+                            <div class="row  align-items-end">
+                                <div class="col-md-3">
+                                    <label for="list-types">Elige el lugar</label>
+
+                                    <div class="select-wrap">
+                                        <span class="icon icon-arrow_drop_down"></span>
+
+                                        <select name="list-types" id="list-types" class="form-control d-block rounded-0">
+                                            <option value="0">Selecione lugar...</option>
+                                        <jsp:useBean class="dao.ComunaDAO" id="comunaDAO"></jsp:useBean>  
+                                        <c:forEach items="${comunaDAO.listar()}" var="comuna">
+
+                                            <option value="${comuna.getId_comuna()}">${comuna.getNombre_comuna()}</option>
+                                        </c:forEach>
+                                    </select>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-3">
+                                <label for="offer-types">Check in</label>
+                                <div class="datepicker-inline">
+                                    <input type="text" class="datepicker" placeholder="Desde">
                                 </div>
                             </div>
-                        </div> 
-                    </div>
-                </div>
-            </section>
+                            <div class="col-md-3">
+                                <label for="offer-types">Check out</label>
+                                <div class="datepicker-inline">
+                                    <input type="text" class="datepicker" placeholder="Hasta">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="submit" class="btn btn-success text-white btn-block rounded-0" value="Buscar">
+                            </div>
+                        </div>
+                    </form>
+                </div>  
 
-            <section id="info-dep" style="padding-top: 60px;">
-                <div class="site-section site-section-sm bg-light">
-                    <div class="container">
+            </div>
+        </div>
 
-                        <div class="row mb-5">
+
+        <!------------------------------------------------------------------------------------->
+
+
+        <section id="info-dep" style="padding-top: 60px;">
+            <div class="site-section site-section-sm bg-light">
+                <div class="container">
+
+                    <div class="row mb-5">
 
                         <jsp:useBean class="dao.DepartamentoDAO" id="departamentoDAO"></jsp:useBean>  
                         <c:forEach items="${departamentoDAO.listar()}" var="depto">
@@ -118,77 +183,7 @@
             </div>
         </section> 
 
-        <section id="departamentos">
-            <div class="container topmargin-lg">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="asset/img/1.jpg" class="pv" alt="1">
-                            <div class="rating">
-                                <ul class="list-inline">
-                                    <li class="list-inline-item"><i class="icon ion-md-star"></i></li>
-                                    <li class="list-inline-item"><i class="icon ion-md-star"></i></li>
-                                    <li class="list-inline-item"><i class="icon ion-md-star"></i></li>
-                                    <li class="list-inline-item"><i class="icon ion-md-star"></i></li>
-                                    <li class="list-inline-item"><i class="icon ion-md-star"></i></li>
-                                </ul>
-                                <div class="text">
-                                    <p>PUERTO VARAS - 2 DORMITORIOS</p>
-                                    <p>Acogedor departamento a solo metros del Puerto de la Ciudad.</p>
-                                    <p>$35.000</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="asset/img/1.jpg" alt="1">
-                            <div class="rating">
-                                <ul class="list-inline">
-                                    <li class="list-inline-item"><i class="icon ion-md-star"></i></li>
-                                    <li class="list-inline-item"><i class="icon ion-md-star"></i></li>
-                                    <li class="list-inline-item"><i class="icon ion-md-star"></i></li>
-                                    <li class="list-inline-item"><i class="icon ion-md-star"></i></li>
-                                    <li class="list-inline-item"><i class="icon ion-md-star"></i></li>
-                                </ul>
-                                <div class="text">
-                                    <p>ARICA - 3 DORMITORIOS</p>
-                                    <p>$30.000</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="asset/img/1.jpg" alt="1">
-                            <div class="rating">
-                                <ul class="list-inline">
-                                    <li class="list-inline-item"><i class="icon ion-md-star"></i></li>
-                                    <li class="list-inline-item"><i class="icon ion-md-star"></i></li>
-                                    <li class="list-inline-item"><i class="icon ion-md-star"></i></li>
-                                    <li class="list-inline-item"><i class="icon ion-md-star"></i></li>
-                                    <li class="list-inline-item"><i class="icon ion-md-star"></i></li>
-                                </ul>
-                                <div class="text">
-                                    <p>VIÑA DEL MAR - 1 DORMITORIO</p>
-                                    <p>$15.000</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                    <div class="dropdown-divider" id="divider"></div>
-                </div>
-            </div>
-        </section>
+
 
         <div id="footer">
             <%@ include file="cabeceras/footer.jsp" %>
@@ -198,6 +193,20 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="asset/js/jquery-3.3.1.min.js"></script>
+        <script src="asset/js/jquery-migrate-3.0.1.min.js"></script>
+        <script src="asset/js/jquery-ui.js"></script>
+        <script src="asset/js/popper.min.js"></script>
+        <script src="asset/js/bootstrap.min.js"></script>
+        <script src="asset/js/owl.carousel.min.js"></script>
+        <script src="asset/js/mediaelement-and-player.min.js"></script>
+        <script src="asset/js/jquery.stellar.min.js"></script>
+        <script src="asset/js/jquery.countdown.min.js"></script>
+        <script src="asset/js/jquery.magnific-popup.min.js"></script>
+        <script src="asset/js/bootstrap-datepicker.min.js"></script>
+        <script src="asset/js/aos.js"></script>
+
+        <script src="asset/js/main.js"></script>
         <%-- Esto se agrego para el estilo --%>
     </body>
 </html>
