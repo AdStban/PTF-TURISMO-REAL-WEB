@@ -27,8 +27,10 @@ public class LoginController extends HttpServlet {
             String correo = request.getParameter("txtCorreo");
             String pass = request.getParameter("txtPass");
 
+            String passHash = dao.CryptoHash(pass);
+            String cryptoPass =passHash.toUpperCase();
             u.setCorreo(correo);
-            u.setPass(pass);
+            u.setPass(cryptoPass);
 
             nivel = dao.validar(u);
 

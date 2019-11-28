@@ -4,6 +4,7 @@ import clases.Conexion;
 import clases.Persona;
 import clases.Usuario;
 import clases.Validar;
+import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.*;
@@ -153,6 +154,25 @@ public class UsuarioDAO implements Validar {
             }
         } catch (Exception e) {
             return 0;
+        }
+    }
+    
+    //Método para aplicar Hash a las contraseñas
+    public String CryptoHash(String base) {
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(base.getBytes("UTF-8"));
+            StringBuffer hexString = new StringBuffer();
+
+            for (int i = 0; i < hash.length; i++) {
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if(hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+
+            return hexString.toString();
+        } catch(Exception ex){
+           throw new RuntimeException(ex);
         }
     }
 }
