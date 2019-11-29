@@ -35,6 +35,7 @@ public class ReservaController extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
 
         String accion = request.getParameter("accion");
         String opcionServicio = request.getParameter("opcionServicio");
@@ -162,6 +163,7 @@ public class ReservaController extends HttpServlet {
 
     private void registrarReserva(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
         //SimpleDateFormat sdf1 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy",Locale.ENGLISH);
         //SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yy");
@@ -214,6 +216,7 @@ public class ReservaController extends HttpServlet {
 
     private void registrarDetalle(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
         String opcionPago = request.getParameter("txtPago");
         int abono = Integer.parseInt(request.getParameter("txtAbono"));
@@ -258,6 +261,7 @@ public class ReservaController extends HttpServlet {
 
     private void registrarServicio(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
         int idServicio = (Integer) request.getSession().getAttribute("idServicio");
         int idDetalle = dao.retornaIdDetalle();
@@ -277,6 +281,7 @@ public class ReservaController extends HttpServlet {
 
     private void enviarCorreo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
 
         String USER_NAME = "info.turismoreal";  //CORREO DE TURISMO REAL ANTES DEL @
         String PASSWORD = "Duoc2019"; //LA CONTRASEÑA
