@@ -1,17 +1,17 @@
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\clases\DetalleReserva.java
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\clases\Persona.java
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\clases\Reserva.java
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\dao\DepartamentoDAO.java
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\controlador\RegisterController.java
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\clases\Tour.java
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\clases\Conexion.java
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\controlador\DepartamentoController.java
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\clases\Departamento.java
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\dao\UsuarioDAO.java
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\clases\Validar.java
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\clases\ServicioExtra.java
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\controlador\LoginController.java
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\controlador\RegistroDatosPersona.java
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\clases\Usuario.java
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\controlador\ReservaController.java
-D:\ayuda proyecto\TurismoReal_WEB2.0\TurismoReal_WEB\src\main\java\dao\ReservaDAO.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\controlador\LoginController.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\clases\DetalleReserva.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\clases\Usuario.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\controlador\RegistroDatosPersona.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\clases\Persona.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\controlador\ReservaController.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\clases\ServicioExtra.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\controlador\RegisterController.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\dao\ReservaDAO.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\clases\Tour.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\dao\DepartamentoDAO.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\clases\Reserva.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\clases\Conexion.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\clases\Departamento.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\controlador\DepartamentoController.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\clases\Validar.java
+H:\Programacion\PTF-TURISMO-REAL-WEB\TurismoReal_WEB\src\main\java\dao\UsuarioDAO.java

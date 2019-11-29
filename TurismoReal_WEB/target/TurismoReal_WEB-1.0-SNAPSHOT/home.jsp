@@ -33,7 +33,7 @@
         <link rel="stylesheet" href="asset/css/fl-bigmug-line.css">
         <link rel="stylesheet" href="asset/css/aos.css">
 
-
+<link rel="icon" type="png" href="asset/img/logo.png" />
         <link rel="stylesheet" href="asset/css/style.css">
 
     </head>
@@ -51,7 +51,7 @@
             </section>
             <section id="form-reserva">
 
-                <div class="container">
+                <div class="container" style="margin-top: -20px;">
                     <div class="col-md-6 topmargin-sm">
                         <h2 >Escriba a que ciudad desea ir</h2>
                         <div class="row">
@@ -67,7 +67,7 @@
             </section>
 
             <section id="info-dep" style="padding-top: 60px;">
-                <div class="site-section site-section-sm bg-light">
+                <div class="site-section site-section-sm bg-light" style="margin-top: -70px;">
                     <div class="container">
 
                         <div class="row mb-5">
@@ -118,7 +118,7 @@
             </div>
         </section> 
 
-        <section id="departamentos">
+                        <section id="departamentos" style="margin-top: -150px;">
             <div class="container topmargin-lg">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">

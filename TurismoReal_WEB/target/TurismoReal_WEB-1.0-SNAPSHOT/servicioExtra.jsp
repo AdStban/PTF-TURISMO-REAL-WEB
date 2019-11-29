@@ -19,6 +19,7 @@
         <!--Llamada a hoja de estilos-->
         <link href="asset/css/estilos.css" rel="stylesheet">
         <title>Servicio adicional</title>
+        <link rel="icon" type="png" href="asset/img/logo.png" />
     </head>
     <body>
         <h1>Hello World!</h1>

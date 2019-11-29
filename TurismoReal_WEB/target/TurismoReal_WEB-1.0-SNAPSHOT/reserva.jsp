@@ -12,7 +12,7 @@
         <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
         <!--Llamada a hoja de estilos-->
         <link href="asset/css/estilos.css" rel="stylesheet">
-
+<link rel="icon" type="png" href="asset/img/logo.png" />
         <script src="js/validar.js" type="text/javascript"></script>
         <title>Sección de Reserva</title>
     </head>
@@ -24,12 +24,16 @@
             <div class="container"> 
                 <form name="frm" action="ReservaController" method="post">
                     <div class="row">
-                        <div class="col-md-6" id="blaBla">
+                        <div class="col-md-6" id="blaBla" style="margin-top: -75px;">
+                            <img src="http://imgcf.ecn.cl/600/1a/1a66f532621a11ded945caee51b923dc1dc6d078.bin.jpg" alt="Image" width="600" height="600" class="img-fluid rounded mb-4" style="border: 7px #08c solid">
                             <h3>¿Estás listo para reservar? <b>Sin duda alguna estás en el mejor lugar.</b></h3>
                             <p>Turismo Real es la empresa <b>N°1</b> del país.</p>
                         </div>
-                        <div class="col-md-6 topmargin-sm">
-                            <h2 style="text-align: center;">Formulario Reserva</h2>
+                        
+                        <div class="col-md-6" style="margin-top: -80px;">
+                            <h2 style="margin-left: 60px;">Formulario Reserva</h2>
+                            <br>
+                            
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-gorup">
@@ -42,6 +46,7 @@
                                     <div class="form-gorup">
                                         <label>Fecha Hasta</label>
                                         <input type="date" name="txtFechaHasta" class="form-control" required> 
+                                        <br>
                                     </div>
                                 </div>
 
@@ -49,15 +54,15 @@
                                     <div class="form-gorup">
                                         <label style="margin-top: 5px;">Cant.Días</label>
                                         <input type="number" name="txtDias" class="form-control" required> 
+                                        <br>
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="form-gorup">
-                                        <label style="margin-top: 5px;">valor</label>
-
-
+                                        <label style="margin-top: 5px;">Valor</label>
                                         <input type="number" name="txtValor" class="form-control" value="${valor}" required readonly="true">
+                                        <br>
                                     </div>
                                 </div>
 
@@ -65,14 +70,17 @@
                                     <div class="form-gorup">
                                         <label style="margin-top: 5px;">Cant.Personas</label>
                                         <input type="number" name="txtPersonas" class="form-control" required> 
+                                        <br>
+                                        <br>
                                     </div>
                                 </div>
+                                        
                                 <div class="dropdown-divider" id="divider"></div>
-                                <h3 style="text-align: center;">Servicio adicional</h3>
-                                <div class="col-md-12">
+                                <h2 style="text-align: center;">Servicio adicional</h2>
+                                <div class="col-md-12 " style="margin-top: -20px;">
                                     <div class="form-gorup">
                                         <label>Seleccione servicio</label>
-                                        <select name="opcionServicio">
+                                        <select name="opcionServicio" class="form-control">
                                             <option value="0">Elija una opción...</option>
                                             <option value="1">Transporte</option>
                                             <option value="2">Paquete turístico</option>
@@ -82,7 +90,7 @@
                                 </div> 
 
 
-                                <div class="col-md-12" style="margin-top: 10px;">
+                                <div class="col-md-12" style="margin-top: 20px;">
                                     <input class="btn btn-dark full-width" type="submit" onclick="return validar();" name="accion" value="Siguiente" required> 
                                 </div>
 

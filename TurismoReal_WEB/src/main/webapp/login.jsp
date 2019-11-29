@@ -6,11 +6,17 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <title>Inicio de sesión</title>
         <link href="asset/css/estilos_viejos.css" rel="stylesheet" type="text/css"/>
+        <link rel="icon" type="png" href="asset/img/logo.png" />
+        
+        
+        
+         <!--Estilo de letra-->
+        <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
     </head>
     <body>
         <div class="center">
             <h1>
-                <a href="index.jsp"><img src="asset/img/logo.png" height="100" width="100"/></a>
+                <a href="index.jsp"><img src="asset/img/logo.png" height="100" width="130"/></a>
                 <br/>
                 Iniciar Sesión
             </h1>
