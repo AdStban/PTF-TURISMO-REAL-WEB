@@ -8,8 +8,9 @@
 body{
   margin: 0;
   padding: 0;
-  font-family: montserrat;
-  background: linear-gradient(120deg,#2980b9, #8e44ad);
+  font-family: "Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; 
+  background: #0B6FAA;
   height: 100vh;
   overflow: hidden;
 }

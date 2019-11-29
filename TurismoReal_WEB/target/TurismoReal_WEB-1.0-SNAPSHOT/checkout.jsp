@@ -11,6 +11,7 @@
         <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
         <!--Llamada a hoja de estilos-->
         <link href="asset/css/estilos.css" rel="stylesheet">
+        <link rel="icon" type="png" href="asset/img/logo.png" />
     </head>
     <body>
         <div id="header">

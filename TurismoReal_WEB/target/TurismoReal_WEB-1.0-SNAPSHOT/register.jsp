@@ -7,11 +7,12 @@
         <title>Página de Registro</title>
         <link href="asset/css/estilos_viejos.css" rel="stylesheet" type="text/css"/>
         <script src="js/validar.js" type="text/javascript"></script>
+        <link rel="icon" type="png" href="asset/img/logo.png" />
     </head>
     <body>
         <div class="center">
             <h1>
-                <a href="index.jsp"><img src="img/logo.png" height="100" width="100"/></a>
+                <a href="index.jsp"><img src="asset/img/logo.png" height="100" width="130"/></a>
                 <br/>
                 Regístrate
             </h1>

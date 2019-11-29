@@ -23,6 +23,7 @@
         <link href="asset/css/estilos.css" rel="stylesheet">
         <script src="asset/js/validar.js" type="text/javascript"></script>
         <link href="WebPayNormal.jsp">
+        <link rel="icon" type="png" href="asset/img/logo.png" />
         <title>Resumen reserva</title>
     </head>
     <body>
@@ -38,8 +39,11 @@
                             <h3>¿Estás listo para reservar? <b>Sin duda alguna estás en el mejor lugar.</b></h3>
                             <p>Turismo Real es la empresa <b>N°1</b> del país.</p>
                         </div>
-                        <div class="col-md-6 topmargin-sm">
-                            <h2 style="text-align: center;">Detalle reserva</h2>
+                        
+                        
+                        <div class="col-md-6 " style="margin-top: -70px;" >
+                            <h2 style="margin-left: 60px;">Detalle reserva</h2>
+                            <br>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-gorup">
@@ -51,8 +55,8 @@
 
                                 <div class="col-md-6">
                                     <div class="form-gorup">
-                                        <label>cantidad de dias</label>
-                                        <input type="text" name="txtDias" class="form-control" required readonly="true" value="${dias}"> 
+                                        <label>Cantidad de dias</label>
+                                        <input type="text" name="txtDias" class="form-control" required readonly="true" value="${dias}">
                                     </div>
                                 </div>
 
@@ -60,11 +64,16 @@
                                     <div class="form-gorup">
                                         <label style="margin-top: 5px;">Lugar</label>
                                         <input type="text" name="txtLugar" class="form-control" required readonly="true" value="${lugar}"> 
+                                        <br>
+                                        <br>
                                     </div>
                                 </div>
+                                        
                                 <div class="dropdown-divider" id="divider"></div>
-                                <h2 style="text-align: center;">Detalle a pagar</h2>
-                                <div class="col-md-12">
+                                
+                                <h2 style="text-align: center">Detalle a pagar</h2>
+                                
+                                <div class="col-md-12" style="margin-top: -20px;">
                                     <div class="form-gorup">
                                         <label style="margin-top: 5px;">Valor por noche</label>
 
@@ -94,7 +103,7 @@
 
                                 <div class="dropdown-divider" id="divider"></div>
 
-                                <div class="col-md-12">
+                                <div class="col-md-12" style="margin-top: -50px;">
                                     <div class="form-gorup">
                                         <label>Opcion de pago</label>
                                         <select name="opcionPago">         

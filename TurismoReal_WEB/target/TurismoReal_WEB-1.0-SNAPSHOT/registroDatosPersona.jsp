@@ -14,6 +14,7 @@
 
         <script src="js/validar.js" type="text/javascript"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link rel="icon" type="png" href="asset/img/logo.png" />
     </head>
     <body>
         <div id="header">
@@ -23,19 +24,23 @@
         <section id="form-reserva">   
             <div class="container"> 
                 <form name="frm" action="RegistroDatosPersona" method="post">
-                    <div class="row">
-                        <div class="col-md-6" id="blaBla">
+                    <div class="row">                        
+                        <div class="col-md-6 " id="blaBla"  style="margin-top: -75px;">
+                           <img src="http://proycasa.com/wp-content/uploads/2019/02/DEVON-3-600x600.jpg" alt="Image" width="550" height="600" class="img-fluid rounded mb-4" style="border: 7px #08c solid">
                             <h3>¿Estás listo para reservar? <b>Sin duda alguna estás en el mejor lugar.</b></h3>
                             <p>Turismo Real es la empresa <b>N°1</b> del país.</p>
                         </div>
-                        <div class="col-md-6 topmargin-sm">
-                            <h2 style="text-align: center;">Completar registro de datos</h2>
+                        <div class="col-md-6" style="margin-top: -80px;">
+                            <h2 style="margin-left: 60px;">Completar registro de datos</h2>
+                            <br>
+
                             <div class="row">
                                 <input type="hidden" name="txtCorreo" value="${email}">
                                 <div class="col-md-6">
                                     <div class="form-gorup">
                                         <label>Nombre</label>
                                         <input type="text" name="txtNombre" class="form-control" required> 
+                                        <br>
                                     </div>
                                 </div>
 
@@ -50,6 +55,7 @@
                                     <div class="form-gorup">
                                         <label>Apellido Materno</label>
                                         <input type="text" name="txtApellidoMa" class="form-control" required> 
+                                        <br>
                                     </div>
                                 </div>
 
@@ -64,6 +70,7 @@
                                     <div class="form-gorup">
                                         <label style="margin-top: 5px;">Contacto</label>
                                         <input type="number" name="txtTelefono" class="form-control" required> 
+                                        <br>
                                     </div>
                                 </div>
 
@@ -78,6 +85,7 @@
                                     <div class="form-gorup">
                                         <label style="margin-top: 5px;">Dirección</label>
                                         <input type="text" name="txtDireccion" class="form-control" required> 
+                                        <br>
                                     </div>
                                 </div>
 
