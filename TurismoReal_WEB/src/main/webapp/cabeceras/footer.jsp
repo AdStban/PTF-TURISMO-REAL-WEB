@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,12 +17,22 @@
     <body>
         <section id="footer" class="bg-dark">
             <div class="container">
+                <c:if test="${perfil==3 || perfil==1}">
                 <a class="navbar-brand" href="home.jsp"><img src="./asset/img/logo.png" class="logo" alt="logo"></a>
                 <ul class="list-inline">
-                    <li class="list-inline-item footer-menu"><a href="#">Home</a></li>
+                    <li class="list-inline-item footer-menu"><a href="home.jsp">Home</a></li>
                     <li class="list-inline-item footer-menu"><a href="#">Departamentos</a></li>
                     <li class="list-inline-item footer-menu"><a href="#">Editar Perfil</a></li>
                 </ul>
+                </c:if>
+                <c:if test="${perfil==2}">
+                <a class="navbar-brand" href="homeFuncionario.jsp"><img src="./asset/img/logo.png" class="logo" alt="logo"></a>
+                <ul class="list-inline">
+                    <li class="list-inline-item footer-menu"><a href="home.jsp">Home</a></li>
+                    <li class="list-inline-item footer-menu"><a href="checkin.jsp">Check-in</a></li>
+                    <li class="list-inline-item footer-menu"><a href="checkout.jsp">Check-out</a></li>
+                </ul>
+                </c:if>
 
                 <ul class="list-inline">
                     <li class="list-inline-item"><a href="#"><i class="icon ion-logo-instagram"></i></a></li>

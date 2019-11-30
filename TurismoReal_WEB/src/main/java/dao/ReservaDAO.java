@@ -3,11 +3,14 @@ package dao;
 import clases.Conexion;
 import clases.DetalleReserva;
 import clases.Reserva;
+import clases.ServicioExtra;
 import clases.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 //import java.sql.ResultSet;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReservaDAO {
 
@@ -152,7 +155,7 @@ public class ReservaDAO {
         }
     }
     
-     public int registrarServicio(int de,int se) {
+    public int registrarServicio(int de,int se) {
         String sql = "INSERT INTO DR_SERVICIO (ID_DETALLE,ID_SERVICIO) VALUES (?,?)";
 
         try {
@@ -175,6 +178,28 @@ public class ReservaDAO {
 
     }
 
+    public int registroReserva(int de,int re) {
+        String sql = "INSERT INTO REGISTRO_RESERVA (ID_REGISTRO,FECHA_RESERVA,ID_DEPARTAMENTO,ID_RESERVA) VALUES (sq_reservaRegistro,sysdate,?,?)";
+
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, de);
+            ps.setInt(2, re);
+            
+            respuesta = ps.executeUpdate();
+
+            if (respuesta == 1) {
+                return 1;
+            } else {
+                return 0;
+            }
+
+        } catch (Exception e) {
+            return 0;
+        }
+
+    }
     //Retorno de ID sesion iniciada
     public int retornoId(Usuario u) {
         String sql = "select id_usuario from usuario where correo_usuario=?";
@@ -201,6 +226,30 @@ public class ReservaDAO {
         } catch (Exception e) {
             return 0;
         }
+    }
+    
+    public List<ServicioExtra> obtenerDatosServicio(int idServicio) {
+
+        String sql = "select ID_SERVICIO,DESCRIPCION_SERVICIO,COSTO_SERVICIO from SERVICIO_EXTRA WHERE ID_SERVICIO=?";
+        List<ServicioExtra> lista = new ArrayList();
+        try {
+            r = 0;
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idServicio);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ServicioExtra se = new ServicioExtra();
+                se.setId_servicio(rs.getInt(1));
+                se.setDescripcion(rs.getString(2));
+                se.setCosto_servicio(rs.getInt(3));
+                lista.add(se);
+            }
+
+        } catch (Exception e) {
+        }
+        return lista;
     }
     
     

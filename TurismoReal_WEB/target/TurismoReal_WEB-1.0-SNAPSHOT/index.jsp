@@ -6,9 +6,11 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <title>Turismo real</title>
-    </head>
-    <body>
-        <nav class="navbar navbar-dark bg-primary">
+        
+        </head>
+        <body>
+            
+            <nav class="navbar navbar-dark bg-primary">
             <a style="color: white" class="navbar-toggler"><span class="navbar-toggler-icon"></span>Menú</a>
             <div class="dropdown">
                 <a style="color: white" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Iniciar sesión</a>

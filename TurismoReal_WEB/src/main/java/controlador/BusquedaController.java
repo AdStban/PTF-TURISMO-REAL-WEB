@@ -16,12 +16,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dao.DepartamentoDAO;
+import java.io.PrintWriter;
 
 import java.util.ArrayList;
 import static java.util.Collections.list;
 import java.util.Date;
 
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -36,6 +38,7 @@ public class BusquedaController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
 
         try {
             DateFormat format = null;
@@ -74,9 +77,16 @@ public class BusquedaController extends HttpServlet {
             List<Departamento> verifica = dao.buscarDepartamento(lugar, desde, hasta);
 
             if (verifica.isEmpty()) {
-                textoResultado = "No existe disponibilidad para la fecha ingresada";
-                request.getSession().setAttribute("msgResultado", textoResultado);
-                request.getRequestDispatcher("resultadoBusqueda.jsp").forward(request, response);
+                out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+                out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+                out.println("<script>");
+                out.println("$(document).ready(function(){");
+                out.println("swal('Sin resultados','No existe disponibilidad para la fecha ingresada','warning');");
+                out.println("});");
+                out.println("</script>");
+                RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+                rd.include(request, response);
+                
             } else {
                 textoResultado = "Resultados de la búsqueda";
                 request.getSession().setAttribute("msgResultado", textoResultado);

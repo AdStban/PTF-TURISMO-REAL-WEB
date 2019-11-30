@@ -1,5 +1,6 @@
 <%@page session="true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,16 +16,16 @@
 
         <script src="asset/js/validar.js" type="text/javascript"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        
-        
+
+
         <title>Sección de Reserva</title>
     </head>
     <body>
-        <!-- <div id="header">
-             
-         </div>-->
-       
-        
+        <div id="header">
+             <%@ include file="cabeceras/header.jsp" %>
+         </div>
+
+
         <section id="form-reserva">   
             <div class="container"> 
                 <form name="frm" action="ReservaController" method="post">
@@ -56,7 +57,7 @@
                                         <input id="txtDias" type="number" name="txtDias" class="form-control" required> 
                                     </div>
                                 </div>
-                                
+
 
                                 <div class="col-md-12">
                                     <div class="form-gorup">
@@ -80,13 +81,18 @@
                                         <label>Seleccione servicio</label>
                                         <select name="opcionServicio">
                                             <option value="0">Elija una opción...</option>
-                                            <option value="1">Transporte</option>
-                                            <option value="2">Paquete turístico</option>
-                                            <option value="3">Transporte + Paquete turístico</option>
+                                            <jsp:useBean class="dao.ServicioDAO" id="servicioDAO"></jsp:useBean>  
+                                            <c:forEach items="${servicioDAO.listar()}" var="servicio">
+                                                
+                                                <option value="${servicio.getId_servicio()}">${servicio.getDescripcion()}, Valor: $ ${servicio.getCosto_servicio()}</option>
+                                                
+                                            </c:forEach>
                                         </select>
+
                                     </div>
+
                                 </div> 
-                                
+
 
 
                                 <div class="col-md-12" style="margin-top: 10px;">
@@ -105,9 +111,9 @@
             <div class="dropdown-divider" id="divider"></div>
         </section>
 
-        <!-- <div id="footer">
-             
-         </div>-->                        
+        <div id="footer">
+             <%@ include file="cabeceras/footer.jsp" %>
+         </div>                     
         <%--
         Esto se agrego para el estilo
         --%>

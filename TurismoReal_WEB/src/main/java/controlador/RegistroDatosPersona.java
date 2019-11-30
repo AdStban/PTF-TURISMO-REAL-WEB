@@ -4,9 +4,11 @@ import clases.Persona;
 import clases.Usuario;
 import dao.UsuarioDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,6 +31,8 @@ public class RegistroDatosPersona extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+
+        PrintWriter out = response.getWriter();
 
         try {
 
@@ -77,12 +81,27 @@ public class RegistroDatosPersona extends HttpServlet {
             //Envio los datos de la variable P, para insertarlos en la BD    
             dao.registrarDatos(p);
 
-            request.setAttribute("mensaje", "Se ha registrado correctamente los datos.");
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+            out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+            out.println("<script>");
+            out.println("$(document).ready(function(){");
+            out.println("swal('Registro exitoso','Se han registrado correctamente los datos','success');");
+            out.println("});");
+            out.println("</script>");
+            RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+            rd.include(request, response);
 
         } catch (Exception e) {
-            request.setAttribute("mensaje", "Hubo un error al guardar.");
-            request.getRequestDispatcher("registroDatosPersona.jsp").forward(request, response);
+            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+            out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+            out.println("<script>");
+            out.println("$(document).ready(function(){");
+            out.println("swal('Error','Ha ocurrido un error al registrar los datos','error');");
+            out.println("});");
+            out.println("</script>");
+            RequestDispatcher rd = request.getRequestDispatcher("registroDatosPersona.jsp");
+            rd.include(request, response);
+
         }
 
     }

@@ -11,7 +11,7 @@ public class Conexion {
     public Connection getConnection() {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            con = DriverManager.getConnection("jdbc:oracle:thin:@ptfaws2019cerv.czz8qnldy1sy.us-east-1.rds.amazonaws.com:1521:ORCL", "admin", "Termicl1");
+            con = DriverManager.getConnection("jdbc:oracle:thin:@ptfawscerv2019.c4m8bxq2fyap.us-east-1.rds.amazonaws.com:1521:ORCL", "admin", "Termicl1");
 
             if (con != null) {
                 System.out.println("Se ha establecido la conexión correctamente a la Base de Datos.");
