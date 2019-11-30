@@ -77,23 +77,26 @@ public class DepartamentoDAO {
         return lista;
     }
 
-    public List<Departamento> buscarDepartamento(String lugar, Date fecha) {
+    public List<Departamento> buscarDepartamento(String lugar, Date desde, Date hasta) {
 
-        String sql = "select d.ID_DEPARTAMENTO,d.COSTO_DEPARTAMENTO,d.TIPO_DEPARTAMENTO,d.DIRECCION_DEPARTAMENTO,c.NOMBRE_COMUNA,i.DORMITORIO_INVENTARIO,i.BANIO_INVENTARIO\n"
-                + "from reserva r \n"
-                + "join REGISTRO_RESERVA rr on r.ID_RESERVA = rr.ID_RESERVA\n"
-                + "join DEPARTAMENTO d on rr.ID_DEPARTAMENTO = d.ID_DEPARTAMENTO\n"
-                + "join comuna c on d.ID_COMUNA = c.ID_COMUNA \n"
-                + "join INVENTARIO i on d.ID_DEPARTAMENTO = i.ID_DEPARTAMENTO\n"
-                + "where lower(c.NOMBRE_COMUNA) = lower(?) \n"
-                + "and ? not between r.fechain_reserva and r.fechater_reserva";
+        String sql = "SELECT d.ID_DEPARTAMENTO, d.COSTO_DEPARTAMENTO,d.TIPO_DEPARTAMENTO, d.DIRECCION_DEPARTAMENTO,c.NOMBRE_COMUNA,i.DORMITORIO_INVENTARIO,i.BANIO_INVENTARIO\n"
+                + "FROM DEPARTAMENTO d join comuna c on d.ID_COMUNA=c.ID_COMUNA \n"
+                + "join INVENTARIO i on d.ID_DEPARTAMENTO=i.ID_DEPARTAMENTO\n"
+                + "LEFT join DETALLE_RESERVA dr on d.ID_DEPARTAMENTO = dr.ID_DEPARTAMENTO\n"
+                + "left join RESERVA r on dr.ID_RESERVA=r.ID_RESERVA \n"
+                + "where r.fechain_reserva not between  ? and ? \n"
+                + "and r.fechater_reserva not BETWEEN ? and ? \n"
+                + "and LOWER(c.nombre_comuna) = LOWER(?) GROUP by d.ID_DEPARTAMENTO, d.COSTO_DEPARTAMENTO,d.TIPO_DEPARTAMENTO, d.DIRECCION_DEPARTAMENTO,c.NOMBRE_COMUNA,i.DORMITORIO_INVENTARIO,i.BANIO_INVENTARIO";
         List<Departamento> lista = new ArrayList();
         try {
             r = 0;
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setString(1, lugar);
-            ps.setDate(2, new java.sql.Date(fecha.getTime()));
+            ps.setDate(1, new java.sql.Date(desde.getTime()));
+            ps.setDate(2, new java.sql.Date(hasta.getTime()));
+            ps.setDate(3, new java.sql.Date(desde.getTime()));
+            ps.setDate(4, new java.sql.Date(hasta.getTime()));
+            ps.setString(5, lugar);
             
 
             rs = ps.executeQuery();

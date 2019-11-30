@@ -1,3 +1,4 @@
+controlador\BusquedaController.class
 controlador\RegisterController.class
 clases\Validar.class
 controlador\RegistroDatosPersona.class
@@ -7,9 +8,13 @@ clases\Reserva.class
 clases\Departamento.class
 clases\Persona.class
 clases\ServicioExtra.class
+clases\Comuna.class
 clases\Usuario.class
 controlador\LoginController.class
+dao\ComunaDAO.class
 clases\Conexion.class
+controlador\ReservaController.class
 dao\UsuarioDAO.class
+dao\ReservaDAO.class
 clases\Tour.class
 controlador\DepartamentoController.class

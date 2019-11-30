@@ -40,18 +40,26 @@
 
         <link rel="stylesheet" href="asset/css/style.css">
 
-        <title>JSP Page</title>
+        <title>Resultado busqueda</title>
     </head>
     <body>
-        <h1>${msgResultado}</h1>
+        <div id="header">
+            <%@ include file="cabeceras/header.jsp" %>
+        </div>
+
         <section id="info-dep" style="padding-top: 60px;">
+          
+            
+            <h2 class="text-info" style="margin-left: 200px">${msgResultado}</h2>
+            
+            
             <div class="site-section site-section-sm bg-light">
                 <div class="container">
 
                     <div class="row mb-5">
 
                         <jsp:useBean class="dao.DepartamentoDAO" id="departamentoDAO"></jsp:useBean>  
-                        <c:forEach items="${departamentoDAO.buscarDepartamento(lugar, desde, hasta)}" var="depto">
+                        <c:forEach items="${departamentoDAO.buscarDepartamento(nomlugar,fechadesde,fechahasta)}" var="depto">
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="property-entry h-100">
 
@@ -92,7 +100,10 @@
             </div>
         </section>
 
-         <%-- Esto se agrego para el estilo --%>
+        <div id="footer">
+            <%@ include file="cabeceras/footer.jsp" %>
+        </div> 
+        <%-- Esto se agrego para el estilo --%>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

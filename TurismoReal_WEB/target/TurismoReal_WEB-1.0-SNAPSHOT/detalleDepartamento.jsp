@@ -109,7 +109,7 @@
 
                                 <div class="row no-gutters mt-5">
                                     <div class="col-12">
-                                        <h2 class="h4 text-black mb-3">Gallery</h2>
+                                        <h2 class="h4 text-black mb-3">Galería</h2>
                                     </div>
                                     <div class="col-sm-6 col-md-4 col-lg-3">
                                         <a href="images/img_1.jpg" class="image-popup gal-item"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>

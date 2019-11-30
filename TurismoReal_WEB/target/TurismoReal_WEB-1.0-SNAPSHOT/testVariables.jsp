@@ -14,6 +14,12 @@
     </head>
     <body>
         <form method="post" action="ReservaController">
+            <h1>${msgResultado}</h1>
+            <h1>${nomComuna}</h1>
+             <h1>${nomlugar}</h1>
+              <h1>${fechadesde}</h1>
+               <h1>${fechahasta}</h1>
+            
             <section id="info-dep">
                 <div class="container">
                     <table border="1">
@@ -25,10 +31,11 @@
                             <th>Dirección</th>
                             <th>Cant. habitaciones</th>
                             <th>Reserva</th>
-                            <th>Reserva</th>
+                            <th>boton</th>
                         </tr>
-                        <jsp:useBean class="dao.DepartamentoDAO" id="departamentoDAO"></jsp:useBean>  
-                        <c:forEach items="${departamentoDAO.buscarDepartamento(lugar, desde, hasta)}" var="d">
+                        <jsp:useBean class="dao.DepartamentoDAO" id="departamentoDAO"></jsp:useBean>
+                         
+                        <c:forEach items="${departamentoDAO.buscarDepartamento(nomlugar, fechadesde, fechahasta)}" var="d">
                             <tr>
                             <input type="hidden" name="txtIdDepartamento"  value="${d.getId_departamento()}">
                             <td><input type="text" name="txtCosto" value="${d.getCosto_departamento()}" readonly="true"></td>

@@ -17,11 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import dao.DepartamentoDAO;
 
-
 import java.util.ArrayList;
 import static java.util.Collections.list;
 import java.util.Date;
-
 
 import java.util.List;
 
@@ -42,18 +40,19 @@ public class BusquedaController extends HttpServlet {
         try {
             DateFormat format = null;
             String[] fecha_i = request.getParameter("txtDesde").split("/");
-            
 
-            if (fecha_i.length > 1) {
-                if (fecha_i[0].length() > 2) {
+            String[] fecha_t = request.getParameter("txtHasta").split("/");
+
+            if (fecha_i.length > 1 && fecha_t.length > 1) {
+                if (fecha_i[0].length() > 2 && fecha_t[0].length() > 2) {
                     format = new SimpleDateFormat("yy/MM/dd");
                 } else {
                     format = new SimpleDateFormat("dd/MM/yy");
                 }
             } else {
                 fecha_i = request.getParameter("txtDesde").split("-");
-                
-                if (fecha_i[0].length() > 2) {
+                fecha_t = request.getParameter("txtHasta").split("-");
+                if (fecha_i[0].length() > 2 && fecha_t[0].length() > 2) {
                     format = new SimpleDateFormat("yy-MM-dd");
                 } else {
                     format = new SimpleDateFormat("dd-MM-yy");
@@ -61,18 +60,28 @@ public class BusquedaController extends HttpServlet {
             }
 
             Date desde = format.parse(request.getParameter("txtDesde"));
-            
+            //Date desde2 = desde1;
+            Date hasta = format.parse(request.getParameter("txtHasta"));
+            //Date hasta2 = hasta1;
             String lugar = request.getParameter("slcLugar");
-            
-       
-            
-            //List<Departamento> verifica = 
-            dao.buscarDepartamento(lugar, desde);
-            String textoResultado;
 
-            textoResultado = "Resultados de la busqueda";
-            request.getSession().setAttribute("msgResultado", textoResultado);
-            request.getRequestDispatcher("testVariables.jsp").forward(request, response);
+            request.getSession().setAttribute("fechadesde", desde);
+            request.getSession().setAttribute("fechahasta", hasta);
+            request.getSession().setAttribute("nomlugar", lugar);
+
+            //
+            String textoResultado;
+            List<Departamento> verifica = dao.buscarDepartamento(lugar, desde, hasta);
+
+            if (verifica != null) {
+                textoResultado = "Resultados de la búsqueda";
+                request.getSession().setAttribute("msgResultado", textoResultado);
+                request.getRequestDispatcher("resultadoBusqueda.jsp").forward(request, response);
+            } else {
+                textoResultado = "No existe disponibilidad para la fecha ingresada";
+                request.getSession().setAttribute("msgResultado", textoResultado);
+                request.getRequestDispatcher("resultadoBusqueda.jsp").forward(request, response);
+            }
 
             /*
                 textoResultado = "Resultados de la busqueda";
