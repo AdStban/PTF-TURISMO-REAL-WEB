@@ -14,6 +14,7 @@ public class LoginController extends HttpServlet {
 
     UsuarioDAO dao = new UsuarioDAO();
     Usuario u = new Usuario();
+    
     int nivel = 0;
     int r = 0;
 
@@ -45,9 +46,19 @@ public class LoginController extends HttpServlet {
                 int id = dao.retornoId(u);
 
                 request.getSession().setAttribute("idUsuario", id);
-
+                
+                
                 request.setAttribute("mensaje", "Se ha Logeado correctamente.");
-                request.getRequestDispatcher("home.jsp").forward(request, response);
+                
+                int verificaDatos = dao.existenciaDatosUsuario(id);
+                
+                if(verificaDatos!=0){
+                    request.getRequestDispatcher("home.jsp").forward(request, response);
+                }
+                else{
+                    request.getRequestDispatcher("registroDatosPersona.jsp").forward(request, response);
+                }
+                
             } else {
                 request.setAttribute("mensaje", "El correo y/o contraseña no coinciden.");
                 request.getRequestDispatcher("login.jsp").forward(request, response);

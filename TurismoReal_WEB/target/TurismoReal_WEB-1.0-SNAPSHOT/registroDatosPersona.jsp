@@ -12,81 +12,105 @@
         <!--Llamada a hoja de estilos-->
         <link href="asset/css/estilos.css" rel="stylesheet">
 
-        <script src="js/validar.js" type="text/javascript"></script>
+        <script src="asset/js/validar.js" type="text/javascript"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
     <body>
-        <div id="header">
-            <%@ include file="cabeceras/header.jsp" %>
-        </div>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="registroDatosPersona.jsp"><img src="./asset/img/logo.png" class="logo" alt="logo"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="icon ion-md-menu"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Cerrar sesión
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="logout.jsp">Salir</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
 
         <section id="form-reserva">   
             <div class="container"> 
                 <form name="frm" action="RegistroDatosPersona" method="post">
                     <div class="row">
                         <div class="col-md-6" id="blaBla">
-                            <h3>¿Estás listo para reservar? <b>Sin duda alguna estás en el mejor lugar.</b></h3>
-                            <p>Turismo Real es la empresa <b>N°1</b> del país.</p>
+                            <h3>¿Estás listo para reservar?</h3>
+                            <h2><b>Primero debes completar tú registro en el sitio web.</b></h2>
+                            <p><b>Turismo Real</b></p>
                         </div>
                         <div class="col-md-6 topmargin-sm">
                             <h2 style="text-align: center;">Completar registro de datos</h2>
                             <div class="row">
-                                <input type="hidden" name="txtCorreo" value="${email}">
+                                <input id="txtCorreo" type="hidden" name="txtCorreo" value="${email}">
                                 <div class="col-md-6">
                                     <div class="form-gorup">
                                         <label>Nombre</label>
-                                        <input type="text" name="txtNombre" class="form-control" required> 
+                                        <input id="txtNombre" type="text" name="txtNombre" class="form-control"> 
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-gorup">
                                         <label>Apellido Paterno</label>
-                                        <input type="text" name="txtApellidoPa" class="form-control" required> 
+                                        <input id="txtApellidoPa" type="text" name="txtApellidoPa" class="form-control"> 
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-gorup">
                                         <label>Apellido Materno</label>
-                                        <input type="text" name="txtApellidoMa" class="form-control" required> 
+                                        <input id="txtApellidoMa" type="text" name="txtApellidoMa" class="form-control"> 
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-gorup">
                                         <label>Rut</label>
-                                        <input type="text" name="txtRut" oninput="checkRut(this)" class="form-control" required> 
+                                        <input id="txtRut" type="text" name="txtRut" oninput="checkRut(this)" class="form-control"> 
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="form-gorup">
                                         <label style="margin-top: 5px;">Contacto</label>
-                                        <input type="number" name="txtTelefono" class="form-control" required> 
+                                        <input id="txtTelefono" type="number" name="txtTelefono" class="form-control"> 
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-gorup">
                                         <label style="margin-top: 5px;">Fecha Nacimiento</label>
-                                        <input type="date" name="dateFechaNac" class="form-control" required> 
+                                        <input id="dateFechaNac" type="date" name="dateFechaNac" class="form-control"> 
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-gorup">
                                         <label style="margin-top: 5px;">Dirección</label>
-                                        <input type="text" name="txtDireccion" class="form-control" required> 
+                                        <input id="txtDireccion" type="text" name="txtDireccion" class="form-control"> 
                                     </div>
                                 </div>
 
                                 <div class="col-md-6" style="margin-top: 10px;">
-                                    <input class="btn btn-dark full-width" type="submit" onclick="return validar();" name="accion" value="Guardar" required> 
+                                    <input class="btn btn-dark full-width" type="submit" onclick="return validarRegistroDatos();" name="accion" value="Guardar"> 
+                                    <td>
+                                
+                            </td>
                                 </div>
-                                <div class="col-md-6" style="margin-top: 10px;">
-                                    <a href="home.jsp" class="btn btn-dark full-width">Volver</a>
-                                </div>
+
 
                                 <div class="mensaje">
                                     <%=request.getAttribute("mensaje") != null ? request.getAttribute("mensaje") : ""%>
@@ -96,12 +120,10 @@
                     </div>
                 </form>
             </div> 
-            <div class="dropdown-divider" id="divider"></div>
+
         </section>
 
-        <div id="footer">
-            <%@ include file="cabeceras/footer.jsp" %>
-        </div>
+
         <%--
         Esto se agrego para el estilo
         --%>

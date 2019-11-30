@@ -73,14 +73,15 @@ public class BusquedaController extends HttpServlet {
             String textoResultado;
             List<Departamento> verifica = dao.buscarDepartamento(lugar, desde, hasta);
 
-            if (verifica != null) {
-                textoResultado = "Resultados de la búsqueda";
-                request.getSession().setAttribute("msgResultado", textoResultado);
-                request.getRequestDispatcher("resultadoBusqueda.jsp").forward(request, response);
-            } else {
+            if (verifica.isEmpty()) {
                 textoResultado = "No existe disponibilidad para la fecha ingresada";
                 request.getSession().setAttribute("msgResultado", textoResultado);
                 request.getRequestDispatcher("resultadoBusqueda.jsp").forward(request, response);
+            } else {
+                textoResultado = "Resultados de la búsqueda";
+                request.getSession().setAttribute("msgResultado", textoResultado);
+                request.getRequestDispatcher("resultadoBusqueda.jsp").forward(request, response);
+                
             }
 
             /*

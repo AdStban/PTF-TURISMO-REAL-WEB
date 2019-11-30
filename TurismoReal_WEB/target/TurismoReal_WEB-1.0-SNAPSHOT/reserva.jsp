@@ -13,13 +13,18 @@
         <!--Llamada a hoja de estilos-->
         <link href="asset/css/estilos.css" rel="stylesheet">
 
-        <script src="js/validar.js" type="text/javascript"></script>
+        <script src="asset/js/validar.js" type="text/javascript"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        
+        
         <title>Sección de Reserva</title>
     </head>
     <body>
-        <div id="header">
-            <%@ include file="cabeceras/header.jsp" %>
-        </div>
+        <!-- <div id="header">
+             
+         </div>-->
+       
+        
         <section id="form-reserva">   
             <div class="container"> 
                 <form name="frm" action="ReservaController" method="post">
@@ -34,23 +39,24 @@
                                 <div class="col-md-6">
                                     <div class="form-gorup">
                                         <label>Fecha Desde</label>
-                                        <input type="date" name="txtFechaDesde" class="form-control" required> 
+                                        <input id="txtDesde" type="date" name="txtFechaDesde" class="form-control" required> 
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-gorup">
                                         <label>Fecha Hasta</label>
-                                        <input type="date" name="txtFechaHasta" class="form-control" required> 
+                                        <input id="txtHasta" oninput="dias()" type="date" name="txtFechaHasta" class="form-control" required> 
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="form-gorup">
                                         <label style="margin-top: 5px;">Cant.Días</label>
-                                        <input type="number" name="txtDias" class="form-control" required> 
+                                        <input id="txtDias" type="number" name="txtDias" class="form-control" required> 
                                     </div>
                                 </div>
+                                
 
                                 <div class="col-md-12">
                                     <div class="form-gorup">
@@ -64,7 +70,7 @@
                                 <div class="col-md-12">
                                     <div class="form-gorup">
                                         <label style="margin-top: 5px;">Cant.Personas</label>
-                                        <input type="number" name="txtPersonas" class="form-control" required> 
+                                        <input id="txtPersonas" type="number" name="txtPersonas" class="form-control" required> 
                                     </div>
                                 </div>
                                 <div class="dropdown-divider" id="divider"></div>
@@ -80,10 +86,11 @@
                                         </select>
                                     </div>
                                 </div> 
+                                
 
 
                                 <div class="col-md-12" style="margin-top: 10px;">
-                                    <input class="btn btn-dark full-width" type="submit" onclick="return validar();" name="accion" value="Siguiente" required> 
+                                    <input class="btn btn-dark full-width" type="submit" onclick="return validarFormularioReserva();" name="accion" value="Siguiente" required> 
                                 </div>
 
                                 <div class="mensaje">
@@ -98,9 +105,9 @@
             <div class="dropdown-divider" id="divider"></div>
         </section>
 
-        <div id="footer">
-            <%@ include file="cabeceras/footer.jsp" %>
-        </div>                        
+        <!-- <div id="footer">
+             
+         </div>-->                        
         <%--
         Esto se agrego para el estilo
         --%>

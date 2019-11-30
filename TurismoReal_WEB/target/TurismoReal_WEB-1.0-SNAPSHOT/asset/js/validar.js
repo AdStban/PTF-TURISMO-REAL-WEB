@@ -1,5 +1,204 @@
-function validar() {
+function validarRegistroCuenta() {
+    expresion = /\w+@\w+\.+[a-z]/;
+    // formulario [register and login]
+    var correo = document.getElementById("correo").value;
+    var pass = document.getElementById("pass").value;
 
+    if (isNullOrEmpty(correo) && isNullOrEmpty(pass)) {
+        swal({
+            title: "Advertencia",
+            text: "Debe ingresar datos",
+            icon: "warning",
+        });
+        return false;
+    } else if (isNullOrEmpty(correo)) {
+        swal({
+            title: "Advertencia",
+            text: "Debes ingresar un correo",
+            icon: "warning",
+        });
+        return false;
+    } else if (isNullOrEmpty(pass)) {
+        swal({
+            title: "Advertencia",
+            text: "Debes ingresar una contraseña",
+            icon: "warning",
+        });
+        return false;
+    } else if (!expresion.test(correo)) {
+        swal({
+            title: "Advertencia",
+            text: "El correo ingresado no es correcto",
+            icon: "warning",
+        });
+        return false;
+    } else if (correo.length > 50) {
+        swal({
+            title: "Advertencia",
+            text: "El correo ingresado es muy largo.",
+            icon: "warning",
+        });
+        return false;
+    } else if (correo.length <= 5) {
+        swal({
+            title: "Advertencia",
+            text: "El correo ingresado es muy corto.",
+            icon: "warning",
+        });
+        return false;
+    } else if (pass.length >= 15) {
+        swal({
+            title: "Advertencia",
+            text: "La contraseña deber contener entre 6 y 15 carácteres",
+            icon: "warning",
+        });
+        return false;
+    } else if (pass.length < 6) {
+        swal({
+            title: "Advertencia",
+            text: "La contraseña deber contener entre 6 y 15 carácteres",
+            icon: "warning",
+        });
+        return false;
+    }
+}
+
+function addZero(i) {
+    if (i < 10) {
+        i = '0' + i;
+    }
+    return i;
+}
+
+function validarFormularioReserva() {
+
+    expresion = /\w+@\w+\.+[a-z]/;
+
+    // Obtención fecha actual.
+    var fecha_actual = new Date();
+    var dd = fecha_actual.getDate();
+    var mm = fecha_actual.getMonth() + 1;
+    var yyyy = fecha_actual.getFullYear();
+
+    dd = addZero(dd);
+    mm = addZero(mm);
+
+    fecha_actual = yyyy + '-' + mm + '-' + dd;
+    // Obtención valores
+
+    //  formulario [reserva]
+    var fecha_desde = document.getElementById("txtDesde").value;
+    var fecha_hasta = document.getElementById("txtHasta").value;
+    var cant_dias = document.getElementById("txtDias").value;
+    var cant_personas = document.getElementById("txtPersonas").value;
+
+    //
+
+
+
+
+
+
+
+    var error = document.getElementById("error");
+
+    if (isNullOrEmpty(fecha_desde) && isNullOrEmpty(fecha_hasta)
+            && isNullOrEmpty(cant_dias) && isNullOrEmpty(cant_personas)) {
+        swal({
+            title: "Advertencia",
+            text: "Debe ingresar lo solicitado",
+            icon: "warning",
+        });
+        return false;
+    } else if (isNullOrEmpty(fecha_desde)) {
+        swal({
+            title: "Advertencia",
+            text: "Debes ingresar la fecha de check-in",
+            icon: "warning",
+        });
+        return false;
+    } else if (isNullOrEmpty(fecha_hasta)) {
+        swal({
+            title: "Advertencia",
+            text: "Debes ingresar la fecha de check-out",
+            icon: "warning",
+        });
+        return false;
+    } else if (fecha_desde <= fecha_actual) {
+        swal({
+            title: "Advertencia",
+            text: "La fecha de check-in es menor al día de hoy",
+            icon: "warning",
+        });
+        return false;
+    } else if (fecha_hasta <= fecha_actual) {
+        swal({
+            title: "Advertencia",
+            text: "La fecha de check-out es menor al día de hoy",
+            icon: "warning",
+        });
+        return false;
+    } else if (fecha_desde >= fecha_hasta) {
+        swal({
+            title: "Advertencia",
+            text: "La fecha de check-in debe ser menor al check-out",
+            icon: "warning",
+        });
+        return false;
+    } else if (isNullOrEmpty(cant_dias)) {
+        swal({
+            title: "Advertencia",
+            text: "Debes ingresar los dias",
+            icon: "warning",
+        });
+        return false;
+
+    } else if (isNullOrEmpty(cant_personas)) {
+        swal({
+            title: "Advertencia",
+            text: "Debes ingresar la cantidad de personas",
+            icon: "warning",
+        });
+        return false;
+    } else if (isNaN(cant_dias)) {
+        swal({
+            title: "Advertencia",
+            text: "La cantidad de días debe ser numero",
+            icon: "warning",
+        });
+        return false;
+    } else if (cant_dias <= 0) {
+        swal({
+            title: "Advertencia",
+            text: "La cantidad de días debe ser de al menos 1",
+            icon: "warning",
+        });
+        return false;
+    } else if (isNaN(cant_dias) > 30) {
+        swal({
+            title: "Advertencia",
+            text: "La cantidad de días debe ser menor a 30",
+            icon: "warning",
+        });
+        return false;
+    } else if (cant_personas < 1) {
+        swal({
+            title: "Advertencia",
+            text: "La cantidad de personas debe ser mayor a 1",
+            icon: "warning",
+        });
+        return false;
+    } else if (cant_personas > 5) {
+        swal({
+            title: "Advertencia",
+            text: "La cantidad de personas debe ser menor o igual a 5",
+            icon: "warning",
+        });
+        return false;
+    }
+}
+
+function validarRegistroDatos() {
     expresion = /\w+@\w+\.+[a-z]/;
 
     // Obtención fecha actual.
@@ -15,303 +214,205 @@ function validar() {
     }
 
     fecha_actual = f.getFullYear() + "-" + mes + "-" + dia;
-    // Obtención valores
-    // formulario [register and login]
-    var correo = document.getElementById("txtCorreo").value;
-    var pass = document.getElementById("txtPassword").value;
-    //  formulario [reserva]
-    var fecha_desde = document.getElementById("cldFechaDesde").value;
-    var fecha_hasta = document.getElementById("cldFechaHasta").value;
-    var cant_dias = document.getElementById("txtCant_dias").value;
-    var cant_personas = document.getElementById("txtCant_personas").value;
+
     //  formulario [registroDatosPersona]
     var nombre = document.getElementById("txtNombre").value;
-    var apellido_pa = document.getElementById("txtApellido_pa").value;
-    var apellido_ma = document.getElementById("txtApellido_ma").value;
-    var contacto = document.getElementById("txtContacto").value;
-    var direccion = document.getElementById("txtDireccion").value;
+    var apellido_pa = document.getElementById("txtApellidoPa").value;
+    var apellido_ma = document.getElementById("txtApellidoMa").value;
     var rut = document.frm.txtRut.value;
-    var fecha_nacimiento = document.getElementById("cldFechaNacimiento").value;
+    var contacto = document.getElementById("txtTelefono").value;
+    var fecha_nacimiento = document.getElementById("dateFechaNac").value;
+    var direccion = document.getElementById("txtDireccion").value;
 
-    var error = document.getElementById("error");
 
-    if (isNullOrEmpty(correo) && isNullOrEmpty(pass) && isNullOrEmpty(fecha_desde) && isNullOrEmpty(fecha_hasta)
-            && isNullOrEmpty(cant_dias) && isNullOrEmpty(cant_personas) && isNullOrEmpty(nombre)
-            && isNullOrEmpty(apellido_pa) && isNullOrEmpty(apellido_ma) && isNullOrEmpty(contacto)
+
+    if (isNullOrEmpty(nombre) && isNullOrEmpty(apellido_pa) && isNullOrEmpty(apellido_ma) && isNullOrEmpty(contacto)
             && isNullOrEmpty(direccion) && isNullOrEmpty(rut) && isNullOrEmpty(fecha_nacimiento)) {
         swal({
-            title: "Error!",
-            text: "Debe llenar todos los campos.",
-            icon: "error",
-        });
-        return false;
-    } else if (isNullOrEmpty(correo)) {
-        swal({
-            title: "Error!",
-            text: "El campo correo es necesario.",
-            icon: "error",
-        });
-        return false;
-    } else if (isNullOrEmpty(pass)) {
-        swal({
-            title: "Error!",
-            text: "El campo contraseña es necesario.",
-            icon: "error",
-        });
-        return false;
-    } else if (isNullOrEmpty(fecha_desde)) {
-        swal({
-            title: "Error!",
-            text: "La fecha desde es necesaria.",
-            icon: "error",
-        });
-        return false;
-    } else if (isNullOrEmpty(fecha_hasta)) {
-        swal({
-            title: "Error!",
-            text: "La fecha hasta es necesaria.",
-            icon: "error",
-        });
-        return false;
-    } else if (isNullOrEmpty(cant_dias)) {
-        swal({
-            title: "Error!",
-            text: "El campo cantidad de días es necesario.",
-            icon: "error",
-        });
-        return false;
-    } else if (isNullOrEmpty(cant_personas)) {
-        swal({
-            title: "Error!",
-            text: "El campo cantidad de personas es necesario.",
-            icon: "error",
+            title: "Advertencia",
+            text: "Debes completar todos los datos",
+            icon: "warning",
         });
         return false;
     } else if (isNullOrEmpty(nombre)) {
         swal({
-            title: "Error!",
-            text: "El campo nombre no debe estar vacío.",
-            icon: "error",
+            title: "Advertencia",
+            text: "Debes ingresar tú nombre",
+            icon: "warning",
         });
         return false;
     } else if (isNullOrEmpty(apellido_pa)) {
         swal({
-            title: "Error!",
-            text: "El campo apellido paterno no debe estar vacío.",
-            icon: "error",
+            title: "Advertencia",
+            text: "Debes ingresar tú apellido paterno",
+            icon: "warning",
         });
         return false;
     } else if (isNullOrEmpty(apellido_ma)) {
         swal({
-            title: "Error!",
-            text: "El campo apellido materno no debe estar vacío.",
-            icon: "error",
-        });
-        return false;
-    } else if (isNullOrEmpty(contacto)) {
-        swal({
-            title: "Error!",
-            text: "El campo contacto no debe estar vacío.",
-            icon: "error",
-        });
-        return false;
-    } else if (isNullOrEmpty(direccion)) {
-        swal({
-            title: "Error!",
-            text: "El campo dirección no debe estar vacío.",
-            icon: "error",
+            title: "Advertencia",
+            text: "Debes ingresar tú apellido materno",
+            icon: "warning",
         });
         return false;
     } else if (isNullOrEmpty(rut)) {
         swal({
-            title: "Error!",
-            text: "El campo rut no debe estar vacío.",
-            icon: "error",
+            title: "Advertencia",
+            text: "Debes ingresar tú rut",
+            icon: "warning",
+        });
+        return false;
+    } else if (isNullOrEmpty(contacto)) {
+        swal({
+            title: "Advertencia",
+            text: "Debes ingresar tú numero de telefono",
+            icon: "warning",
         });
         return false;
     } else if (isNullOrEmpty(fecha_nacimiento)) {
         swal({
-            title: "Error!",
-            text: "La fecha de nacimiento es necesaria.",
-            icon: "error",
+            title: "Advertencia",
+            text: "Debes ingresar tú fecha de nacimiento",
+            icon: "warning",
         });
         return false;
-    } else if (!expresion.test(correo)) {
+    } else if (isNullOrEmpty(direccion)) {
         swal({
-            title: "Error!",
-            text: "El correo ingresado no es correcto.",
-            icon: "error",
+            title: "Advertencia",
+            text: "Debes ingresar tú domicilio",
+            icon: "warning",
         });
         return false;
-    } else if (correo.length > 100) {
+    } else if (nombre.length > 20) {
         swal({
-            title: "Error!",
-            text: "El correo ingresado es muy largo.",
-            icon: "error",
-        });
-        return false;
-    } else if (correo.length <= 5) {
-        swal({
-            title: "Error!",
-            text: "El correo ingresado es muy corto.",
-            icon: "error",
-        });
-        return false;
-    } else if (pass.length >= 50) {
-        swal({
-            title: "Error!",
-            text: "La contraseña que ha ingresado es muy larga.",
-            icon: "error",
-        });
-        return false;
-    } else if (pass.length < 6) {
-        swal({
-            title: "Error!",
-            text: "La contraseña que ha ingresado es muy corta. Debe ser de 6 carácteres.",
-            icon: "error",
-        });
-        return false;
-    } else if (fecha_desde < fecha_actual) {
-        swal({
-            title: "Error!",
-            text: "La fecha que ha seleccionado es menor a la fecha actual.",
-            icon: "error",
-        });
-        return false;
-    } else if (fecha_hasta < fecha_actual) {
-        swal({
-            title: "Error!",
-            text: "La fecha que ha seleccionado es menor a la fecha actual.",
-            icon: "error",
-        });
-        return false;
-    } else if (isNaN(cant_dias)) {
-        swal({
-            title: "Error!",
-            text: "La cantidad de días ingresada debe ser un número.",
-            icon: "error",
-        });
-        return false;
-    } else if (cant_dias <= 0) {
-        swal({
-            title: "Error!",
-            text: "La cantidad de días debe ser al menos de uno.",
-            icon: "error",
-        });
-        return false;
-    } else if (isNaN(cant_dias) > 100) {
-        swal({
-            title: "Error!",
-            text: "La cantidad de días ingresada debe ser menor a 100.",
-            icon: "error",
-        });
-        return false;
-    } else if (cant_personas < 1) {
-        swal({
-            title: "Error!",
-            text: "La cantidad de personas ingresada debe ser mayor a 1.",
-            icon: "error",
-        });
-        return false;
-    } else if (cant_personas > 10) {
-        swal({
-            title: "Error!",
-            text: "La cantidad de personas debe ser menor a 10.",
-            icon: "error",
-        });
-        return false;
-    } else if (nombre.length > 30) {
-        swal({
-            title: "Error!",
-            text: "El nombre ingresado debe ser mas corto.",
-            icon: "error",
+            title: "Advertencia",
+            text: "El nombre ingresado debe ser menos de 20 carácteres",
+            icon: "warning",
         });
         return false;
     } else if (nombre.length < 3) {
         swal({
-            title: "Error!",
-            text: "El nombre ingresado debe ser mas largo.",
-            icon: "error",
+            title: "Advertencia",
+            text: "El nombre ingresado debe contener mas de 3 carácteres",
+            icon: "warning",
         });
         return false;
-    } else if (apellido_pa.length > 30) {
+    } else if (!isNaN(nombre)) {
         swal({
-            title: "Error!",
-            text: "El apellido paterno ingresado debe ser mas corto.",
-            icon: "error",
+            title: "Advertencia",
+            text: "NO debes ingresar números en el nombre",
+            icon: "warning",
+        });
+        return false;
+    } else if (apellido_pa.length > 15) {
+        swal({
+            title: "Advertencia",
+            text: "El apellido paterno debe ser menor a 10 carácteres",
+            icon: "warning",
         });
         return false;
     } else if (apellido_pa.length < 3) {
         swal({
-            title: "Error!",
-            text: "El apellido paterno ingresado debe ser mas largo.",
-            icon: "error",
+            title: "Advertencia",
+            text: "El apellido paterno ingresado debe contener mas de 3 carácteres",
+            icon: "warning",
         });
         return false;
-    } else if (apellido_ma.length > 30) {
+    } else if (!isNaN(apellido_pa)) {
         swal({
-            title: "Error!",
-            text: "El apellido materno ingresado debe ser mas corto.",
-            icon: "error",
+            title: "Advertencia",
+            text: "NO debes ingresar números en el apellido paterno",
+            icon: "warning",
+        });
+        return false;
+    } else if (apellido_ma.length > 15) {
+        swal({
+            title: "Advertencia",
+            text: "El apellido materno debe ser menor a 10 carácteres",
+            icon: "warning",
         });
         return false;
     } else if (apellido_ma.length < 3) {
         swal({
-            title: "Error!",
-            text: "El apellido materno ingresado debe ser mas largo.",
-            icon: "error",
+            title: "Advertencia",
+            text: "El apellido materno debe contener mas de 3 carácteres",
+            icon: "warning",
+        });
+        return false;
+
+    } else if (!isNaN(apellido_ma)) {
+        swal({
+            title: "Advertencia",
+            text: "NO debes ingresar números en el apellido materno",
+            icon: "warning",
+        });
+        return false;
+    } else if (checkRut(rut)) {
+        swal({
+            title: "Advertencia",
+            text: "El rut es inválido",
+            icon: "warning",
         });
         return false;
     } else if (isNaN(contacto)) {
         swal({
-            title: "Error!",
-            text: "El contacto ingresado debe ser un número.",
-            icon: "error",
+            title: "Advertencia",
+            text: "Debes ingresar números en el contacto",
+            icon: "warning",
         });
         return false;
     } else if (contacto.length < 3) {
         swal({
-            title: "Error!",
-            text: "El número de contacto es muy corto.",
-            icon: "error",
+            title: "Advertencia",
+            text: "El número de contacto es muy corto",
+            icon: "warning",
         });
         return false;
     } else if (contacto.length > 15) {
         swal({
-            title: "Error!",
+            title: "Advertencia",
             text: "El número de contacto es muy largo.",
-            icon: "error",
+            icon: "warning",
         });
         return false;
-    } else if (direccion.length < 5) {
+    } else if (direccion.length < 8) {
         swal({
-            title: "Error!",
-            text: "La dirección ingresada es muy corta.",
-            icon: "error",
+            title: "Advertencia",
+            text: "La dirección ingresada debe contener mas de 8 carácteres",
+            icon: "warning",
         });
         return false;
-    } else if (direccion.length > 60) {
+    } else if (direccion.length > 25) {
         swal({
-            title: "Error!",
-            text: "La dirección ingresada es demasiado larga.",
-            icon: "error",
+            title: "Advertencia",
+            text: "La dirección ingresada debe contener menos de 25 carácteres",
+            icon: "warning",
         });
         return false;
     } else if (fecha_nacimiento > fecha_actual) {
         swal({
-            title: "Error!",
-            text: "La fecha de nacimiento seleccionada no puede ser mayor a la fecha actual.",
-            icon: "error",
+            title: "Advertencia",
+            text: "La fecha de nacimiento seleccionada no puede ser mayor a la fecha actual",
+            icon: "warning",
         });
         return false;
     } else if (calcularEdad() < 18) {
         swal({
-            title: "Error!",
-            text: "Usted debe ser mayor de edad.",
-            icon: "error",
+            title: "Advertencia",
+            text: "Debes ser mayor de edad",
+            icon: "warning",
         });
         return false;
     }
+
+}
+
+function calcularDias() {
+    var fechaini = new Date(document.getElementById("txtDesde").value);
+    var fechafin = new Date(document.getElementById("txtHasta").value);
+    var diasdif = fechafin.getTime() - fechaini.getTime();
+    var contdias = Math.round(diasdif / (1000 * 60 * 60 * 24));
+    document.getElementById("txtDias").innerHTML=contdias;
 }
 
 function isNullOrEmpty(str) {
@@ -421,7 +522,7 @@ function validate_fecha(fecha)
  */
 function calcularEdad()
 {
-    var fecha_nacimiento = document.getElementById("cldFechaNacimiento").value;
+    var fecha_nacimiento = document.getElementById("dateFechaNac").value;
     if (validate_fecha(fecha_nacimiento) === true)
     {
         // Amiguitos aquí calculamos Si la fecha es correcta, en caso de que sea así calculamos la edad ;)
@@ -469,13 +570,13 @@ function calcularEdad()
             ultimoDiaMes = new Date(ahora_ano, ahora_mes, 0);
             dias = ultimoDiaMes.getDate() - (dia - ahora_dia);
         }
-        if(edad < 18){
+        if (edad < 18) {
             swal({
-            title: "Error!",
-            text: "Usted debe ser mayor de edad.",
-            icon: "error",
-        });
-        return false;
+                title: "Error!",
+                text: "Usted debe ser mayor de edad.",
+                icon: "error",
+            });
+            return false;
         }
         //document.getElementById("result").innerHTML="Tienes "+edad+" años, "+meses+" meses y "+dias+" días";
     } else {
