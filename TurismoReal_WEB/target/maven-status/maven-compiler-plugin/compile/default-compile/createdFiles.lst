@@ -10,6 +10,8 @@ clases\ServicioExtra.class
 clases\Usuario.class
 controlador\LoginController.class
 clases\Conexion.class
+controlador\ReservaController.class
 dao\UsuarioDAO.class
+dao\ReservaDAO.class
 clases\Tour.class
 controlador\DepartamentoController.class
