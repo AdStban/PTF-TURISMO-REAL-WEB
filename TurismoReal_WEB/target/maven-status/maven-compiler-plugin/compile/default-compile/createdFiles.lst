@@ -1,5 +1,6 @@
 controlador\BusquedaController.class
 controlador\RegisterController.class
+clases\Galeria.class
 clases\Validar.class
 controlador\RegistroDatosPersona.class
 dao\DepartamentoDAO.class
@@ -16,6 +17,7 @@ dao\ComunaDAO.class
 clases\Conexion.class
 controlador\ReservaController.class
 dao\UsuarioDAO.class
+dao\GaleriaDAO.class
 dao\ReservaDAO.class
 clases\Tour.class
 controlador\DepartamentoController.class

@@ -329,6 +329,11 @@
             <version>1.6.2</version>
         </dependency>
         <dependency>
+            <groupId>ftpClient.id</groupId>
+            <artifactId>artefactFtpClient.id</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
