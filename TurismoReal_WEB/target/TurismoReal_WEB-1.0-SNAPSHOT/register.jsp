@@ -6,8 +6,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <title>Página de Registro</title>
         <link href="asset/css/estilos_viejos.css" rel="stylesheet" type="text/css"/>
-        <script src="js/validar.js" type="text/javascript"></script>
-        <link rel="icon" type="png" href="asset/img/logo.png" />
+        <script src="asset/js/validar.js" type="text/javascript"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
     <body>
         <div class="center">
@@ -17,7 +17,7 @@
                 Regístrate
             </h1>
 
-            <form action="RegisterController" method="post" onsubmit="return validar();">
+            <form action="RegisterController" method="post">
 
                 <div class="txt_field">
                     <input id="correo" type="text" name="txtCorreo" required>
@@ -30,7 +30,7 @@
                     <label>Contraseña</label>
                 </div>
                 <div class="pass">¿He olvidado la contraseña?</div>
-                <input type="submit" name="accion" value="Registrar">
+                <input type="submit" name="accion" value="Registrar" onclick="return validarRegistroCuenta();">
                 <div class="signup_link">
                     ¿Ya tienes una cuenta? <a href="login.jsp">Iniciar sesión</a>
                 </div>

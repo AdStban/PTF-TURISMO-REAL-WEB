@@ -2,12 +2,15 @@ package controlador;
 
 import clases.DetalleReserva;
 import clases.Reserva;
+import clases.ServicioExtra;
 import dao.ReservaDAO;
 import clases.Usuario;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -16,6 +19,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +39,8 @@ public class ReservaController extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
 
         String accion = request.getParameter("accion");
         String opcionServicio = request.getParameter("opcionServicio");
@@ -55,33 +61,24 @@ public class ReservaController extends HttpServlet {
                 request.getSession().setAttribute("dias", request.getParameter("txtDias"));
                 request.getSession().setAttribute("personas", request.getParameter("txtPersonas"));
                 request.getSession().setAttribute("servicio", opcionServicio);
-                int servicio = 0;
-                int idServicio = Integer.parseInt(request.getParameter("opcionServicio"));
-                int valor = dao.retornoValorServicio(idServicio);
-                String nombreServicio;
-                if (opcionServicio != null) {
-                    if (opcionServicio.equals("1")) {
-                        nombreServicio = "Transporte";
-                        servicio = 1;
-                        request.getSession().setAttribute("nomServicio", nombreServicio);
-                        request.getSession().setAttribute("idServicio", servicio);
-                        valorServicio = valor;
 
-                    }
-                    if (opcionServicio.equals("2")) {
-                        nombreServicio = "Paquete turístico";
-                        servicio = 2;
-                        request.getSession().setAttribute("nomServicio", nombreServicio);
-                        request.getSession().setAttribute("idServicio", servicio);
-                        valorServicio = valor;
-                    }
-                    if (opcionServicio.equals("3")) {
-                        nombreServicio = "Paquete transporte + paquete turístico";
-                        servicio = 3;
-                        request.getSession().setAttribute("nomServicio", nombreServicio);
-                        request.getSession().setAttribute("idServicio", servicio);
-                        valorServicio = valor;
-                    }
+                int IdServicio = Integer.parseInt(opcionServicio);
+                String nomServicio = null;
+                int valor = 0;
+
+                List<ServicioExtra> servicio = dao.obtenerDatosServicio(IdServicio);
+                if (!servicio.isEmpty()) {
+                    nomServicio = servicio.get(0).getDescripcion();
+
+                    valor = servicio.get(0).getCosto_servicio();
+                }
+
+                if (opcionServicio != null) {
+
+                    request.getSession().setAttribute("nomServicio", nomServicio);
+                    request.getSession().setAttribute("idServicio", IdServicio);
+                    valorServicio = valor;
+
                 } else {
                     valorServicio = 0;
                 }
@@ -120,6 +117,16 @@ public class ReservaController extends HttpServlet {
                     request.getRequestDispatcher("detalleReserva.jsp").forward(request, response);
 
                 } catch (Exception e) {
+                    out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+                    out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+                    out.println("<script>");
+                    out.println("$(document).ready(function(){");
+                    out.println("swal('Error','Ha ocurrido un error al querer reservar','error');");
+                    out.println("});");
+                    out.println("</script>");
+                    RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+                    rd.include(request, response);
+
                 }
 
                 break;
@@ -143,8 +150,16 @@ public class ReservaController extends HttpServlet {
                     }
                     request.getSession().setAttribute("abono", abonoEntero);
                 } else {
-                    request.setAttribute("mensaje", "Ha ocurrido un error, ");
-                    request.getRequestDispatcher("detalleReserva.jsp").forward(request, response);
+                    out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+                    out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+                    out.println("<script>");
+                    out.println("$(document).ready(function(){");
+                    out.println("swal('Error','Ha ocurrido un error al querer reservar','error');");
+                    out.println("});");
+                    out.println("</script>");
+                    RequestDispatcher rd = request.getRequestDispatcher("detalleReserva.jsp");
+                    rd.include(request, response);
+
                 }
 
                 break;
@@ -162,6 +177,10 @@ public class ReservaController extends HttpServlet {
 
     private void registrarReserva(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
 
         //SimpleDateFormat sdf1 = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy",Locale.ENGLISH);
         //SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yy");
@@ -207,21 +226,35 @@ public class ReservaController extends HttpServlet {
             }
 
         } catch (Exception ex) {
-            request.setAttribute("mensaje", "Ha ocurrido un error al ingresar la reserva, " + ex);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+            out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+            out.println("<script>");
+            out.println("$(document).ready(function(){");
+            out.println("swal('Error','Ha ocurrido un error al ingresar la reserva','error');");
+            out.println("});");
+            out.println("</script>");
+            RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+            rd.include(request, response);
+
         }
     }
 
     private void registrarDetalle(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
 
         String opcionPago = request.getParameter("txtPago");
         int abono = Integer.parseInt(request.getParameter("txtAbono"));
         int restante = 0;
         int totalPago = Integer.parseInt(request.getParameter("txtTotal"));
         int idDepto = Integer.parseInt(request.getParameter("txtIdDepto"));
+        int opcionServicio = Integer.parseInt(request.getParameter("txtOpcionServicio"));
+        
 
         int idReserva = dao.retornaIdReserva();
+        
         try {
             //int idReserva = dao.retornaIdReserva();
             if (opcionPago.equals("abono")) {
@@ -240,9 +273,10 @@ public class ReservaController extends HttpServlet {
             dr.setId_reserva(idReserva);
 
             String verifica = dao.registrarDetalle(dr);
-            //int idServicio = (Integer) request.getSession().getAttribute("idServicio");
 
-            if (verifica != null) {
+            dao.registroReserva(idDepto, idReserva);
+            if (verifica != null && opcionServicio == 0) {
+                
                 request.getRequestDispatcher("enviandoCorreo.jsp").forward(request, response);
 
             } else {
@@ -250,33 +284,56 @@ public class ReservaController extends HttpServlet {
             }
 
         } catch (Exception ex) {
-            request.setAttribute("mensaje", "Ha ocurrido un error al ingresar la reserva, " + ex);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+
+            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+            out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+            out.println("<script>");
+            out.println("$(document).ready(function(){");
+            out.println("swal('Error','Ha ocurrido un error al ingresar la reserva','error');");
+            out.println("});");
+            out.println("</script>");
+            RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+            rd.include(request, response);
 
         }
     }
 
     private void registrarServicio(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
 
         int idServicio = (Integer) request.getSession().getAttribute("idServicio");
         int idDetalle = dao.retornaIdDetalle();
 
+       
+
         int verifica = dao.registrarServicio(idDetalle, idServicio);
 
         if (verifica == 1) {
-
+            
             request.getRequestDispatcher("enviandoCorreo.jsp").forward(request, response);
 
         } else {
-            request.setAttribute("mensaje", "Ha ocurrido un error");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+            out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+            out.println("<script>");
+            out.println("$(document).ready(function(){");
+            out.println("swal('Error','Ha ocurrido un error al ingresar el servicio extra','error');");
+            out.println("});");
+            out.println("</script>");
+            RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+            rd.include(request, response);
         }
 
     }
 
     private void enviarCorreo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        PrintWriter out = response.getWriter();
 
         String USER_NAME = "info.turismoreal";  //CORREO DE TURISMO REAL ANTES DEL @
         String PASSWORD = "Duoc2019"; //LA CONTRASEÑA
@@ -312,7 +369,7 @@ public class ReservaController extends HttpServlet {
                     + "Saludos Cordiales,\n"
                     + "EQUIPO CERV\n"
                     + "";
-        } else { 
+        } else {
             body = "Comprobante de reserva por internet\n"
                     + "Estimado Usuario:\n"
                     + "\n"
@@ -368,15 +425,37 @@ public class ReservaController extends HttpServlet {
             transport.connect(host, from, pass);
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
-            request.setAttribute("mensaje", "Reserva registrada correctamente");
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+
+            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+            out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+            out.println("<script>");
+            out.println("$(document).ready(function(){");
+            out.println("swal('Reserva realizada','Se ha enviado un correo con los detalles, gracias por preferirnos','success');");
+            out.println("});");
+            out.println("</script>");
+            RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+            rd.include(request, response);
 
         } catch (AddressException ae) {
-            ae.printStackTrace();
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+            out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+            out.println("<script>");
+            out.println("$(document).ready(function(){");
+            out.println("swal('Error','Ha ocurrido un error al enviar el correo','error');");
+            out.println("});");
+            out.println("</script>");
+            RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+            rd.include(request, response);
         } catch (MessagingException me) {
-            me.printStackTrace();
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+            out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+            out.println("<script>");
+            out.println("$(document).ready(function(){");
+            out.println("swal('Error','Ha ocurrido un error al enviar el correo','error');");
+            out.println("});");
+            out.println("</script>");
+            RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+            rd.include(request, response);
         }
 
         //dao.enviarCorreoReserva(from, pass, to, subject, body);

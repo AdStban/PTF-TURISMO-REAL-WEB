@@ -3,19 +3,14 @@ package dao;
 import clases.Conexion;
 import clases.DetalleReserva;
 import clases.Reserva;
+import clases.ServicioExtra;
 import clases.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 //import java.sql.ResultSet;
 import java.sql.*;
-import java.util.Properties;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReservaDAO {
 
@@ -160,7 +155,7 @@ public class ReservaDAO {
         }
     }
     
-     public int registrarServicio(int de,int se) {
+    public int registrarServicio(int de,int se) {
         String sql = "INSERT INTO DR_SERVICIO (ID_DETALLE,ID_SERVICIO) VALUES (?,?)";
 
         try {
@@ -183,6 +178,28 @@ public class ReservaDAO {
 
     }
 
+    public int registroReserva(int de,int re) {
+        String sql = "INSERT INTO REGISTRO_RESERVA (ID_REGISTRO,FECHA_RESERVA,ID_DEPARTAMENTO,ID_RESERVA) VALUES (sq_reservaRegistro,sysdate,?,?)";
+
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, de);
+            ps.setInt(2, re);
+            
+            respuesta = ps.executeUpdate();
+
+            if (respuesta == 1) {
+                return 1;
+            } else {
+                return 0;
+            }
+
+        } catch (Exception e) {
+            return 0;
+        }
+
+    }
     //Retorno de ID sesion iniciada
     public int retornoId(Usuario u) {
         String sql = "select id_usuario from usuario where correo_usuario=?";
@@ -211,48 +228,29 @@ public class ReservaDAO {
         }
     }
     
-    public void enviarCorreoReserva(String from, String pass, String[] to, String subject, String body) {
-        Properties props = System.getProperties();
-        String host = "smtp.gmail.com";
+    public List<ServicioExtra> obtenerDatosServicio(int idServicio) {
 
-        props.put("mail.smtp.starttls.enable", "true");
-
-        props.put("mail.smtp.ssl.trust", host);
-        props.put("mail.smtp.user", from);
-        props.put("mail.smtp.password", pass);
-        props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.auth", "true");
-
-        Session session = Session.getDefaultInstance(props);
-        MimeMessage message = new MimeMessage(session);
-
+        String sql = "select ID_SERVICIO,DESCRIPCION_SERVICIO,COSTO_SERVICIO from SERVICIO_EXTRA WHERE ID_SERVICIO=?";
+        List<ServicioExtra> lista = new ArrayList();
         try {
+            r = 0;
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idServicio);
 
-            message.setFrom(new InternetAddress(from));
-            InternetAddress[] toAddress = new InternetAddress[to.length];
-
-            // To get the array of addresses
-            for (int i = 0; i < to.length; i++) {
-                toAddress[i] = new InternetAddress(to[i]);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ServicioExtra se = new ServicioExtra();
+                se.setId_servicio(rs.getInt(1));
+                se.setDescripcion(rs.getString(2));
+                se.setCosto_servicio(rs.getInt(3));
+                lista.add(se);
             }
 
-            for (int i = 0; i < toAddress.length; i++) {
-                message.addRecipient(Message.RecipientType.TO, toAddress[i]);
-            }
-
-            message.setSubject(subject);
-            message.setText(body);
-
-            Transport transport = session.getTransport("smtp");
-
-            transport.connect(host, from, pass);
-            transport.sendMessage(message, message.getAllRecipients());
-            transport.close();
-
-        } catch (AddressException ae) {
-            ae.printStackTrace();
-        } catch (MessagingException me) {
-            me.printStackTrace();
+        } catch (Exception e) {
         }
+        return lista;
     }
+    
+    
 }

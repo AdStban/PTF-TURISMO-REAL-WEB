@@ -3,6 +3,9 @@ package controlador;
 import clases.Usuario;
 import dao.UsuarioDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,12 +17,14 @@ public class LoginController extends HttpServlet {
 
     UsuarioDAO dao = new UsuarioDAO();
     Usuario u = new Usuario();
+
     int nivel = 0;
     int r = 0;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
 
         String accion = request.getParameter("accion");
         if (accion.equals("Ingresar")) {
@@ -28,12 +33,12 @@ public class LoginController extends HttpServlet {
             String pass = request.getParameter("txtPass");
 
             String passHash = dao.CryptoHash(pass);
-            String cryptoPass =passHash.toUpperCase();
+            String cryptoPass = passHash.toUpperCase();
             u.setCorreo(correo);
             u.setPass(cryptoPass);
 
             nivel = dao.validar(u);
-
+            PrintWriter out = response.getWriter();
             //r = dao.validar(u);
             if (nivel != 0) {
                 request.getSession().setAttribute("email", correo);
@@ -45,11 +50,41 @@ public class LoginController extends HttpServlet {
 
                 request.getSession().setAttribute("idUsuario", id);
 
-                request.setAttribute("mensaje", "Se ha Logeado correctamente.");
-                request.getRequestDispatcher("home.jsp").forward(request, response);
+                out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+                out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+                out.println("<script>");
+                out.println("$(document).ready(function(){");
+                out.println("swal('Logueo exitoso','has iniciado sesión','success');");
+                out.println("});");
+                out.println("</script>");
+                //request.setAttribute("mensaje", "Se ha Logeado correctamente.");
+
+                int verificaDatos = dao.existenciaDatosUsuario(id);
+
+                if (verificaDatos != 0) {
+                    if (nivel == 2) {
+                        RequestDispatcher rd = request.getRequestDispatcher("homeFuncionario.jsp");
+                        rd.include(request, response);
+                    } else {
+                        RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+                        rd.include(request, response);
+                    }
+                } else {
+                    request.getRequestDispatcher("registroDatosPersona.jsp").forward(request, response);
+                }
+
             } else {
-                request.setAttribute("mensaje", "El correo y/o contraseña no coinciden.");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+                out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+                out.println("<script>");
+                out.println("$(document).ready(function(){");
+                out.println("swal('Datos incorrectos','El correo y/o contraseña no coinciden','error');");
+                out.println("});");
+                out.println("</script>");
+                //request.setAttribute("mensaje", "El correo y/o contraseña no coinciden.");
+
+                RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+                rd.include(request, response);
             }
 
         } else {

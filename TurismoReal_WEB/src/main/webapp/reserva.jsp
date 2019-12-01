@@ -1,5 +1,6 @@
 <%@page session="true"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,14 +13,19 @@
         <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
         <!--Llamada a hoja de estilos-->
         <link href="asset/css/estilos.css" rel="stylesheet">
-<link rel="icon" type="png" href="asset/img/logo.png" />
-        <script src="js/validar.js" type="text/javascript"></script>
+
+        <script src="asset/js/validar.js" type="text/javascript"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
         <title>Sección de Reserva</title>
     </head>
     <body>
         <div id="header">
-            <%@ include file="cabeceras/header.jsp" %>
-        </div>
+             <%@ include file="cabeceras/header.jsp" %>
+         </div>
+
+
         <section id="form-reserva">   
             <div class="container"> 
                 <form name="frm" action="ReservaController" method="post">
@@ -38,25 +44,24 @@
                                 <div class="col-md-6">
                                     <div class="form-gorup">
                                         <label>Fecha Desde</label>
-                                        <input type="date" name="txtFechaDesde" class="form-control" required> 
+                                        <input id="txtDesde" type="date" name="txtFechaDesde" class="form-control" required> 
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-gorup">
                                         <label>Fecha Hasta</label>
-                                        <input type="date" name="txtFechaHasta" class="form-control" required> 
-                                        <br>
+                                        <input id="txtHasta" oninput="dias()" type="date" name="txtFechaHasta" class="form-control" required> 
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="form-gorup">
                                         <label style="margin-top: 5px;">Cant.Días</label>
-                                        <input type="number" name="txtDias" class="form-control" required> 
-                                        <br>
+                                        <input id="txtDias" type="number" name="txtDias" class="form-control" required> 
                                     </div>
                                 </div>
+
 
                                 <div class="col-md-12">
                                     <div class="form-gorup">
@@ -69,9 +74,7 @@
                                 <div class="col-md-12">
                                     <div class="form-gorup">
                                         <label style="margin-top: 5px;">Cant.Personas</label>
-                                        <input type="number" name="txtPersonas" class="form-control" required> 
-                                        <br>
-                                        <br>
+                                        <input id="txtPersonas" type="number" name="txtPersonas" class="form-control" required> 
                                     </div>
                                 </div>
                                         
@@ -82,16 +85,22 @@
                                         <label>Seleccione servicio</label>
                                         <select name="opcionServicio" class="form-control">
                                             <option value="0">Elija una opción...</option>
-                                            <option value="1">Transporte</option>
-                                            <option value="2">Paquete turístico</option>
-                                            <option value="3">Transporte + Paquete turístico</option>
+                                            <jsp:useBean class="dao.ServicioDAO" id="servicioDAO"></jsp:useBean>  
+                                            <c:forEach items="${servicioDAO.listar()}" var="servicio">
+                                                
+                                                <option value="${servicio.getId_servicio()}">${servicio.getDescripcion()}, Valor: $ ${servicio.getCosto_servicio()}</option>
+                                                
+                                            </c:forEach>
                                         </select>
+
                                     </div>
+
                                 </div> 
 
 
-                                <div class="col-md-12" style="margin-top: 20px;">
-                                    <input class="btn btn-dark full-width" type="submit" onclick="return validar();" name="accion" value="Siguiente" required> 
+
+                                <div class="col-md-12" style="margin-top: 10px;">
+                                    <input class="btn btn-dark full-width" type="submit" onclick="return validarFormularioReserva();" name="accion" value="Siguiente" required> 
                                 </div>
 
                                 <div class="mensaje">
@@ -107,8 +116,8 @@
         </section>
 
         <div id="footer">
-            <%@ include file="cabeceras/footer.jsp" %>
-        </div>                        
+             <%@ include file="cabeceras/footer.jsp" %>
+         </div>                     
         <%--
         Esto se agrego para el estilo
         --%>

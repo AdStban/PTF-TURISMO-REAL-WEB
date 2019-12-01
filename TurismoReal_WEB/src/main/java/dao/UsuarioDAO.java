@@ -156,23 +156,55 @@ public class UsuarioDAO implements Validar {
             return 0;
         }
     }
-    
+
+    public int existenciaDatosUsuario(int id) {
+        String sql = "select dp.ID_DATOS,dp.RUT_DATOS,dp.NOMBRE_DATOS,dp.APELLIDOPA_DATOS,dp.APELLIDOMA_DATOS,dp.CONTACTO_DATOS,dp.FECHANAC_DATOS,dp.DIRECCION_DATOS,dp.ID_USUARIO\n"
+                + "from usuario u \n"
+                + "join datos_persona dp on u.ID_USUARIO = dp.ID_USUARIO\n"
+                + "where dp.ID_USUARIO = ?";
+
+        try {
+            r = 0;
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                nivel = rs.getInt(1);
+                r = r + 1;
+                
+
+            }
+            if (r == 1) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
     //Método para aplicar Hash a las contraseñas
     public String CryptoHash(String base) {
-        try{
+        try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(base.getBytes("UTF-8"));
             StringBuffer hexString = new StringBuffer();
 
             for (int i = 0; i < hash.length; i++) {
                 String hex = Integer.toHexString(0xff & hash[i]);
-                if(hex.length() == 1) hexString.append('0');
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
                 hexString.append(hex);
             }
 
             return hexString.toString();
-        } catch(Exception ex){
-           throw new RuntimeException(ex);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
         }
     }
 }

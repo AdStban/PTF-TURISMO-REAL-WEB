@@ -15,7 +15,8 @@
     <body>
         <% 
             session.invalidate();
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            
+            request.getRequestDispatcher("index.jsp").forward(request, response);
             //response.sendRedirect("login.jsp");
             
         %>
