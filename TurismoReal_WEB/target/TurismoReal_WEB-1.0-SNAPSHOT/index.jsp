@@ -25,7 +25,7 @@
                                     <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="login.jsp">Inicio sesiï¿½n</a>
+                                    <a class="nav-link" href="login.jsp">Inicio sesión</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="register.jsp">Registrar</a>
@@ -45,7 +45,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="fancy-hero-content text-center">
-                        <h2>Comienza hoy la bï¿½squeda de ese lugar para vacacionar</h2>
+                        <h2>Comienza hoy la búsqueda de ese lugar para vacacionar</h2>
                         <a href="login.jsp" class="btn fancy-btn fancy-active">Empezar</a>
 
                     </div>
@@ -71,7 +71,7 @@
                             <div class="col-12 col-md-4">
                                 <div class="single-top-feature">
                                     <h5><i class="ti-time" aria-hidden="true"></i> Experiencia</h5>
-                                    <p>Mï¿½s de 10 aï¿½os en el negocio de arriendos de departamentos por temporada. </p>
+                                    <p>Más de 10 años en el negocio de arriendos de departamentos por temporada. </p>
                                 </div>
                             </div>
                             <div class="col-12 col-md-4">
@@ -99,56 +99,56 @@
             <div class="accordion unit-8 fancy-top-features-area" id="accordion">
             <div class="accordion-item">
                 <h5 class="mb-0 heading single-top-feature" style="padding: 20px">
-                <a class="btn-block" data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="false" aria-controls="collapseOne">ï¿½Cï¿½mo creo una cuenta? <span class="ti-arrow-up"></span></a>
+                <a class="btn-block" data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="false" aria-controls="collapseOne">¿Cómo creo una cuenta? <span class="ti-arrow-up"></span></a>
               </h5>
               <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="body-text">
-                  <p>Si todavï¿½a no tienes una cuenta en Turismo Real, accede a TurismoReal.cl y pulsa en Regï¿½strate.
-                     Puedes registrarte utilizando tu direcciï¿½n de correo electrï¿½nico. 
+                  <p>Si todavía no tienes una cuenta en Turismo Real, accede a TurismoReal.cl y pulsa en Regï¿½strate.
+                     Puedes registrarte utilizando tu dirección de correo electrónico. 
                      Registrarse y crear una cuenta en Turismo Real es gratuito.
-                     Despuï¿½s de hacerlo, asegï¿½rate de completar tu cuenta antes de reservar.</p>
+                     Después de hacerlo, asegúrate de completar tu cuenta antes de reservar.</p>
                 </div>
               </div>
             </div> <!-- .accordion-item -->
             
             <div class="accordion-item">
               <h5 class="mb-0 heading single-top-feature" style="padding: 20px">
-                <a class="btn-block" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">ï¿½Quï¿½ hago si alguien me pide pagar fuera del sitio web de Turismo Real? <span class="ti-arrow-up"></span></a>
+                <a class="btn-block" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">¿Qué hago si alguien me pide pagar fuera del sitio web de Turismo Real? <span class="ti-arrow-up"></span></a>
               </h5>
               <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="body-text">
-                  <p>No le envï¿½es dinero y avï¿½sanos. Turismo Real nunca te solicitarï¿½ que efectï¿½es un pago fuera de la plataforma ya sea por email o a travï¿½s de un tercero.
-                     En algunos casos, es posible que tengas que abonar impuestos locales al anfitriï¿½n, pero dicho pago debe efectuarse ï¿½nicamente a travï¿½s de Turismo Real y, en la mayorï¿½a de los casos, estarï¿½ incluido en el precio de la reservaciï¿½n.
-                     Si has pagado a tu anfitriï¿½n por medios ajenos a Turismo Real (por ejemplo, a travï¿½s de una transferencia bancaria), es posible que hayas pagado por una reservaciï¿½n fraudulenta. Para obtener ayuda, infï¿½rmanos de inmediato.
-                     Si no estï¿½s seguro, puedes verificar si tu reservaciï¿½n se realizï¿½ a travï¿½s de Turismo Real.</p>
+                  <p>No le envíes dinero y avísanos. Turismo Real nunca te solicitarpa que efectues un pago fuera de la plataforma ya sea por email o a través de un tercero.
+                     En algunos casos, es posible que tengas que abonar impuestos locales al anfitrión, pero dicho pago debe efectuarse únicamente a través de Turismo Real y, en la mayoría de los casos, estaría incluido en el precio de la reservación.
+                     Si has pagado a tu anfitrión por medios ajenos a Turismo Real (por ejemplo, a través de una transferencia bancaria), es posible que hayas pagado por una reservación fraudulenta. Para obtener ayuda, informanos de inmediato.
+                     Si no estas seguro, puedes verificar si tu reservación se realizó a través de Turismo Real.</p>
                 </div>
               </div>
             </div> <!-- .accordion-item -->
 
             <div class="accordion-item">
               <h5 class="mb-0 heading single-top-feature" style="padding: 20px">
-                <a class="btn-block" data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapseThree">ï¿½Por quï¿½ debo pagar y comunicarme directamente a travï¿½s de Turismo Real? <span class="ti-arrow-up"></span></a>
+                <a class="btn-block" data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapseThree">¿Por qué debo pagar y comunicarme directamente a través de Turismo Real? <span class="ti-arrow-up"></span></a>
               </h5>
               <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="body-text">
-                  <p> Si realizas tus pagos y te comunicas a travï¿½s de la plataforma de Turismo Real, podrï¿½s disfrutar de la protecciï¿½n que te brindan nuestras Condiciones de servicio, nuestros Tï¿½rminos de Pago del Servicio, nuestra polï¿½tica de cancelaciï¿½n y de reembolso, nuestra Garantï¿½a para anfitriones y otras medidas de seguridad.
-                      Tambiï¿½n te permitirï¿½ encontrar y consultar fï¿½cilmente detalles sobre tu reservaciï¿½n, como la direcciï¿½n del alojamiento, tu itinerario, cï¿½mo va a organizarse la llegada y otra informaciï¿½n ï¿½til. 
-                      Si reservas tu estancia y la pagas fuera del sistema de Turismo Real, no podrï¿½s beneficiarte de todas estas ventajas.
-                      Si realizas tus pagos o te comunicas fuera de nuestra plataforma tambiï¿½n nos resultarï¿½ mï¿½s difï¿½cil proteger tus datos personales y te expondrï¿½s a ser vï¿½ctima de posibles estafas y a sufrir otros problemas de seguridad, como el phishing (suplantaciï¿½n de identidad).</p>
+                  <p> Si realizas tus pagos y te comunicas a través de la plataforma de Turismo Real, podrías disfrutar de la protección que te brindan nuestras Condiciones de servicio, nuestros Términos de Pago del Servicio, nuestra política de cancelación y de reembolso, nuestra Garantï¿½a para anfitriones y otras medidas de seguridad.
+                      También te permitirá encontrar y consultar fácilmente detalles sobre tu reservación, como la dirección del alojamiento, tu itinerario, cómo va a organizarse la llegada y otra información útil. 
+                      Si reservas tu estancia y la pagas fuera del sistema de Turismo Real, no podrías beneficiarte de todas estas ventajas.
+                      Si realizas tus pagos o te comunicas fuera de nuestra plataforma también nos resultaría más difícil proteger tus datos personales y te expondrías a ser víctima de posibles estafas y a sufrir otros problemas de seguridad, como el phishing (suplantación de identidad).</p>
                 </div>
               </div>
             </div> <!-- .accordion-item -->
 
             <div class="accordion-item">
               <h5 class="mb-0 heading single-top-feature" style="padding: 20px">
-                <a class="btn-block" data-toggle="collapse" href="#collapseFour" role="button" aria-expanded="false" aria-controls="collapseFour">ï¿½Cuï¿½l es la polï¿½tica de cancelaciï¿½n de Turismo Real para las estadï¿½as? <span class="ti-arrow-up"></span></a>
+                <a class="btn-block" data-toggle="collapse" href="#collapseFour" role="button" aria-expanded="false" aria-controls="collapseFour">¿Cuál es la política de cancelación de Turismo Real para las estadías? <span class="ti-arrow-up"></span></a>
               </h5>
               <div id="collapseFour" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="body-text">
-                  <p>En Turismo Real, los anfitriones determinan las polï¿½ticas de cancelaciï¿½n que los huï¿½spedes pueden elegir al reservar. 
-                     Los tï¿½rminos varï¿½an segï¿½n el lugar y la cantidad de tiempo que falte para la llegada.
-                     Encontrarï¿½s los detalles sobre las cancelaciones hacia el final de la pï¿½gina del anuncio del lugar que quieres reservar. 
-                     Tambiï¿½n podrï¿½s revisar la polï¿½tica de cancelaciï¿½n de nuevo antes de reservar. Despuï¿½s de reservar, verï¿½s los detalles en el correo electrï¿½nico de confirmaciï¿½n de reservaciï¿½n y en tu pï¿½gina de Viajes.</p>
+                  <p>En Turismo Real, los anfitriones determinan las políticas de cancelación que los huéspedes pueden elegir al reservar. 
+                     Los términos varían según el lugar y la cantidad de tiempo que falte para la llegada.
+                     Encontrarías los detalles sobre las cancelaciones hacia el final de la página del anuncio del lugar que quieres reservar. 
+                     También podrías revisar la política de cancelación de nuevo antes de reservar. Después de reservar, verás los detalles en el correo electrónico de confirmación de reservación y en tu página de Viajes.</p>
                 </div>
               </div>
             </div> <!-- .accordion-item -->
@@ -178,7 +178,7 @@
                     <!-- Footer Widget -->
                     <div class="col-12 col-sm-6 col-lg-3">
                         <div class="single-footer-widget">
-                            <h6>Contï¿½ctanos</h6>
+                            <h6>Contáctanos</h6>
                             <p>1 (800) 686-6688 <br>info.turismoreal@gmail.com
                             </p>
                             <p>40 Baria Sreet 133/2 <br>Santiago, Chile</p>

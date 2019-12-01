@@ -179,7 +179,7 @@ public class ReservaDAO {
     }
 
     public int registroReserva(int de,int re) {
-        String sql = "INSERT INTO REGISTRO_RESERVA (ID_REGISTRO,FECHA_RESERVA,ID_DEPARTAMENTO,ID_RESERVA) VALUES (sq_reservaRegistro,sysdate,?,?)";
+        String sql = "INSERT INTO REGISTRO_RESERVA (ID_REGISTRO,FECHA_RESERVA,ID_DEPARTAMENTO,ID_RESERVA) VALUES (sq_reservaRegistro.nextval,sysdate,?,?)";
 
         try {
             con = cn.getConnection();
