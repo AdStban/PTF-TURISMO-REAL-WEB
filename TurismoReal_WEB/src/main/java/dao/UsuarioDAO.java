@@ -8,6 +8,8 @@ import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import oracle.jdbc.OracleTypes;
 
 public class UsuarioDAO implements Validar {
@@ -174,7 +176,6 @@ public class UsuarioDAO implements Validar {
             while (rs.next()) {
                 nivel = rs.getInt(1);
                 r = r + 1;
-                
 
             }
             if (r == 1) {
@@ -206,5 +207,65 @@ public class UsuarioDAO implements Validar {
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
+    }
+
+    public List<Persona> datosPersona(String correo) {
+
+        String sql = "select dp.NOMBRE_DATOS,dp.RUT_DATOS,dp.CONTACTO_DATOS,dp.DIRECCION_DATOS \n"
+                + "from DATOS_PERSONA dp \n"
+                + "join USUARIO usu on dp.ID_USUARIO = usu.ID_USUARIO\n"
+                + "where usu.CORREO_USUARIO = ?";
+
+        List lista = new ArrayList();
+
+        try {
+            r = 0;
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, correo);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                Persona per = new Persona();
+                per.setNombre(rs.getString(1));
+                per.setRut(rs.getString(2));
+                per.setContacto(rs.getString(3));
+                per.setDireccion(rs.getString(4));
+                lista.add(per);
+
+            }
+
+        } catch (Exception e) {
+        }
+        return lista;
+    }
+
+    public int modificaDatos(Persona p) {
+        String sql = "update DATOS_PERSONA \n"
+                + "set NOMBRE_DATOS=?,RUT_DATOS=?,CONTACTO_DATOS=?,DIRECCION_DATOS=?\n"
+                + "where ID_USUARIO = ?";
+
+        
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, p.getNombre());
+            ps.setString(2, p.getRut());
+            ps.setString(3, p.getContacto());
+            ps.setString(4, p.getDireccion());
+            ps.setInt(5, p.getId_usuario());
+            respuesta = ps.executeUpdate();
+
+            if (respuesta == 1) {
+                return 1;
+                
+            } else {
+                return 0;
+            }
+        } catch (Exception e) {
+            return 0;
+        }
+        
     }
 }

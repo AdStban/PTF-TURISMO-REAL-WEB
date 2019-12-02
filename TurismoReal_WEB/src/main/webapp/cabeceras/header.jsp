@@ -40,14 +40,14 @@
                             </c:if>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="registroDatosPersona.jsp"><i class="icon ion-md-create"></i> Editar perfil</a>
+                            <a class="nav-link" href="modificarDatosPersonales.jsp"><i class="icon ion-md-create"></i> Editar perfil</a>
                         </li>
 
 
 
                         <c:if test="${perfil==3}">
                             <li class="nav-item">
-                                <a class="nav-link" href="verReservas.jsp"><i class="icon ion-md-business"></i>Ver reservas</a>
+                                <a class="nav-link" href="muestraReservas.jsp"><i class="icon ion-md-business"></i>Ver reservas</a>
                             </li>
                         </c:if>
 

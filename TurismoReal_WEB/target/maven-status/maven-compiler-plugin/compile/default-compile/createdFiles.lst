@@ -9,7 +9,9 @@ clases\Departamento.class
 clases\Persona.class
 dao\ServicioDAO.class
 clases\ServicioExtra.class
+controlador\SubirImagenesController.class
 clases\Comuna.class
+controlador\ModificaDatosController.class
 clases\Usuario.class
 controlador\LoginController.class
 dao\ComunaDAO.class

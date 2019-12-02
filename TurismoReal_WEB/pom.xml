@@ -329,6 +329,22 @@
             <version>1.6.2</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>9.0.27</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>subida</groupId>
+            <artifactId>imagenes</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>utilitario</groupId>
+            <artifactId>imagenes2</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>

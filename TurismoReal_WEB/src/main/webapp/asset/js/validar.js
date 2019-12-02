@@ -63,6 +63,75 @@ function validarRegistroCuenta() {
     }
 }
 
+function validarBuscador(){
+    // Obtención fecha actual.
+    var fecha_actual = new Date();
+    var dd = fecha_actual.getDate();
+    var mm = fecha_actual.getMonth() + 1;
+    var yyyy = fecha_actual.getFullYear();
+
+    dd = addZero(dd);
+    mm = addZero(mm);
+
+    fecha_actual = yyyy + '-' + mm + '-' + dd;
+    // Obtención valores
+    var lugar = document.getElementById("lugar").value;
+    var desde = document.getElementById("desde").value;
+    var hasta = document.getElementById("hasta").value;
+    
+    if (isNullOrEmpty(lugar) && isNullOrEmpty(desde)
+             && isNullOrEmpty(hasta)) {
+        swal({
+            title: "Advertencia",
+            text: "Debe ingresar el lugar y las fechas deseadas",
+            icon: "warning",
+        });
+        return false;
+    } else if (lugar==="0") {
+        swal({
+            title: "Advertencia",
+            text: "Debes ingresar el lugar al que quieres ir",
+            icon: "warning",
+        });
+        return false;
+    } else if (isNullOrEmpty(desde)) {
+        swal({
+            title: "Advertencia",
+            text: "Debes ingresar la fecha inicial",
+            icon: "warning",
+        });
+        return false;
+    }else if (isNullOrEmpty(lugar)) {
+        swal({
+            title: "Advertencia",
+            text: "Debes ingresar la fecha final",
+            icon: "warning",
+        });
+        return false;
+    } else if (desde <= fecha_actual) {
+        swal({
+            title: "Advertencia",
+            text: "La fecha inicial no debe ser igual o menor al día de hoy",
+            icon: "warning",
+        });
+        return false;
+    } else if ( hasta <= fecha_actual) {
+        swal({
+            title: "Advertencia",
+            text: "La fecha final no debe ser igual o menor al día de hoy",
+            icon: "warning",
+        });
+        return false;
+    } else if (desde >= hasta) {
+        swal({
+            title: "Advertencia",
+            text: "La fecha final debe ser mayor a la fecha inicial",
+            icon: "warning",
+        });
+        return false;
+    } 
+}
+//funcion que ayuda a obtener la fecha actual
 function addZero(i) {
     if (i < 10) {
         i = '0' + i;
@@ -89,7 +158,7 @@ function validarFormularioReserva() {
     //  formulario [reserva]
     var fecha_desde = document.getElementById("txtDesde").value;
     var fecha_hasta = document.getElementById("txtHasta").value;
-    var cant_dias = document.getElementById("txtDias").value;
+    
     var cant_personas = document.getElementById("txtPersonas").value;
 
     //
@@ -103,81 +172,52 @@ function validarFormularioReserva() {
     var error = document.getElementById("error");
 
     if (isNullOrEmpty(fecha_desde) && isNullOrEmpty(fecha_hasta)
-            && isNullOrEmpty(cant_dias) && isNullOrEmpty(cant_personas)) {
+             && isNullOrEmpty(cant_personas)) {
         swal({
             title: "Advertencia",
-            text: "Debe ingresar lo solicitado",
+            text: "Debe ingresar los datos solicitados",
             icon: "warning",
         });
         return false;
     } else if (isNullOrEmpty(fecha_desde)) {
         swal({
             title: "Advertencia",
-            text: "Debes ingresar la fecha de check-in",
+            text: "Debes ingresar la fecha desde",
             icon: "warning",
         });
         return false;
     } else if (isNullOrEmpty(fecha_hasta)) {
         swal({
             title: "Advertencia",
-            text: "Debes ingresar la fecha de check-out",
+            text: "Debes ingresar la fecha hasta",
             icon: "warning",
         });
         return false;
     } else if (fecha_desde <= fecha_actual) {
         swal({
             title: "Advertencia",
-            text: "La fecha de check-in es menor al día de hoy",
+            text: "La fecha desde es menor al día de hoy",
             icon: "warning",
         });
         return false;
     } else if (fecha_hasta <= fecha_actual) {
         swal({
             title: "Advertencia",
-            text: "La fecha de check-out es menor al día de hoy",
+            text: "La fecha de hasta es menor al día de hoy",
             icon: "warning",
         });
         return false;
     } else if (fecha_desde >= fecha_hasta) {
         swal({
             title: "Advertencia",
-            text: "La fecha de check-in debe ser menor al check-out",
+            text: "La fecha final debe ser mayor a la fecha inicial",
             icon: "warning",
         });
         return false;
-    } else if (isNullOrEmpty(cant_dias)) {
-        swal({
-            title: "Advertencia",
-            text: "Debes ingresar los dias",
-            icon: "warning",
-        });
-        return false;
-
     } else if (isNullOrEmpty(cant_personas)) {
         swal({
             title: "Advertencia",
             text: "Debes ingresar la cantidad de personas",
-            icon: "warning",
-        });
-        return false;
-    } else if (isNaN(cant_dias)) {
-        swal({
-            title: "Advertencia",
-            text: "La cantidad de días debe ser numero",
-            icon: "warning",
-        });
-        return false;
-    } else if (cant_dias <= 0) {
-        swal({
-            title: "Advertencia",
-            text: "La cantidad de días debe ser de al menos 1",
-            icon: "warning",
-        });
-        return false;
-    } else if (isNaN(cant_dias) > 30) {
-        swal({
-            title: "Advertencia",
-            text: "La cantidad de días debe ser menor a 30",
             icon: "warning",
         });
         return false;
@@ -202,18 +242,16 @@ function validarRegistroDatos() {
     expresion = /\w+@\w+\.+[a-z]/;
 
     // Obtención fecha actual.
-    var f = new Date();
-    var mes = (f.getMonth() + 1).toString();
-    var dia = f.getDay().toString();
+    // Obtención fecha actual.
+    var fecha_actual = new Date();
+    var dd = fecha_actual.getDate();
+    var mm = fecha_actual.getMonth() + 1;
+    var yyyy = fecha_actual.getFullYear();
 
-    if (mes.length <= 1) {
-        mes = "0" + mes;
-    }
-    if (dia.length <= 1) {
-        dia = "0" + dia;
-    }
+    dd = addZero(dd);
+    mm = addZero(mm);
 
-    fecha_actual = f.getFullYear() + "-" + mes + "-" + dia;
+    fecha_actual = yyyy + '-' + mm + '-' + dd;
 
     //  formulario [registroDatosPersona]
     var nombre = document.getElementById("txtNombre").value;
@@ -407,12 +445,114 @@ function validarRegistroDatos() {
 
 }
 
+function validarModificarDatos() {
+
+
+
+
+    //  formulario [Actualiza datos persona]
+    var nombre = document.getElementById("txtNombre").value;
+    var contacto = document.getElementById("txtTelefono").value;
+    var direccion = document.getElementById("txtDireccion").value;
+
+
+
+    if (isNullOrEmpty(nombre) && isNullOrEmpty(contacto)
+            && isNullOrEmpty(direccion)) {
+        swal({
+            title: "Advertencia",
+            text: "Debes completar todos los datos",
+            icon: "warning",
+        });
+        return false;
+    } else if (isNullOrEmpty(nombre)) {
+        swal({
+            title: "Advertencia",
+            text: "Debes ingresar tú nombre",
+            icon: "warning",
+        });
+        return false;
+    }  else if (isNullOrEmpty(contacto)) {
+        swal({
+            title: "Advertencia",
+            text: "Debes ingresar tú numero de telefono",
+            icon: "warning",
+        });
+        return false;
+    } else if (isNullOrEmpty(direccion)) {
+        swal({
+            title: "Advertencia",
+            text: "Debes ingresar tú domicilio",
+            icon: "warning",
+        });
+        return false;
+    } else if (nombre.length > 20) {
+        swal({
+            title: "Advertencia",
+            text: "El nombre ingresado debe ser menos de 20 carácteres",
+            icon: "warning",
+        });
+        return false;
+    } else if (nombre.length < 3) {
+        swal({
+            title: "Advertencia",
+            text: "El nombre ingresado debe contener mas de 3 carácteres",
+            icon: "warning",
+        });
+        return false;
+    } else if (!isNaN(nombre)) {
+        swal({
+            title: "Advertencia",
+            text: "NO debes ingresar números en el nombre",
+            icon: "warning",
+        });
+        return false;
+    } else if (isNaN(contacto)) {
+        swal({
+            title: "Advertencia",
+            text: "Debes ingresar números en el contacto",
+            icon: "warning",
+        });
+        return false;
+    } else if (contacto.length < 3) {
+        swal({
+            title: "Advertencia",
+            text: "El número de contacto es muy corto",
+            icon: "warning",
+        });
+        return false;
+    } else if (contacto.length > 15) {
+        swal({
+            title: "Advertencia",
+            text: "El número de contacto es muy largo.",
+            icon: "warning",
+        });
+        return false;
+    } else if (direccion.length < 8) {
+        swal({
+            title: "Advertencia",
+            text: "La dirección ingresada debe contener mas de 8 carácteres",
+            icon: "warning",
+        });
+        return false;
+    } else if (direccion.length > 25) {
+        swal({
+            title: "Advertencia",
+            text: "La dirección ingresada debe contener menos de 25 carácteres",
+            icon: "warning",
+        });
+        return false;
+    }
+    
+   
+}
+
 function calcularDias() {
     var fechaini = new Date(document.getElementById("txtDesde").value);
     var fechafin = new Date(document.getElementById("txtHasta").value);
     var diasdif = fechafin.getTime() - fechaini.getTime();
     var contdias = Math.round(diasdif / (1000 * 60 * 60 * 24));
-    document.getElementById("txtDias").innerHTML=contdias;
+    document.getElementById("txtDias").innerHTML = contdias;
 }
 
 function isNullOrEmpty(str) {

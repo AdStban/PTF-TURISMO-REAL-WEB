@@ -28,7 +28,7 @@ public class DepartamentoController extends HttpServlet {
             List<Departamento> da = dao.obtenerDepartamento(id);
 
             request.getSession().setAttribute("idDepartamento", id);
-            request.getRequestDispatcher("detalleDepartamento.jsp").forward(request, response);
+            response.sendRedirect("detalleDepartamento.jsp");
         }
     }
 

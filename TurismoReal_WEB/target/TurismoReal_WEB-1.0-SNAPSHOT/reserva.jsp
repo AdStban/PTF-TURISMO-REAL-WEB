@@ -31,7 +31,7 @@
                 <form name="frm" action="ReservaController" method="post">
                     <div class="row">
                         <div class="col-md-6" id="blaBla" style="margin-top: -75px;">
-                            <img src="http://imgcf.ecn.cl/600/1a/1a66f532621a11ded945caee51b923dc1dc6d078.bin.jpg" alt="Image" width="600" height="600" class="img-fluid rounded mb-4" style="border: 7px #08c solid">
+                            <img src="http://imgcf.ecn.cl/600/1a/1a66f532621a11ded945caee51b923dc1dc6d078.bin.jpg" alt="Image" width="430" height="430" class="img-fluid rounded mb-4" style="border: 7px #08c solid">
                             <h3>¿Estás listo para reservar? <b>Sin duda alguna estás en el mejor lugar.</b></h3>
                             <p>Turismo Real es la empresa <b>N°1</b> del país.</p>
                         </div>
@@ -51,21 +51,13 @@
                                 <div class="col-md-6">
                                     <div class="form-gorup">
                                         <label>Fecha Hasta</label>
-                                        <input id="txtHasta" oninput="dias()" type="date" name="txtFechaHasta" class="form-control" required> 
+                                        <input id="txtHasta"  type="date" name="txtFechaHasta" class="form-control" required> 
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="form-gorup">
-                                        <label style="margin-top: 5px;">Cant.Días</label>
-                                        <input id="txtDias" type="number" name="txtDias" class="form-control" required> 
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-12">
-                                    <div class="form-gorup">
-                                        <label style="margin-top: 5px;">Valor</label>
+                                        <label style="margin-top: 5px;">Valor x día</label>
                                         <input type="number" name="txtValor" class="form-control" value="${valor}" required readonly="true">
                                         <br>
                                     </div>
