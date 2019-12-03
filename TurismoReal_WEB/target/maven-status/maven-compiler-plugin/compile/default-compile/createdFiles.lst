@@ -19,7 +19,6 @@ dao\ComunaDAO.class
 clases\Conexion.class
 controlador\ReservaController.class
 dao\UsuarioDAO.class
-dao\GaleriaDAO.class
 dao\ReservaDAO.class
 clases\Tour.class
 controlador\DepartamentoController.class

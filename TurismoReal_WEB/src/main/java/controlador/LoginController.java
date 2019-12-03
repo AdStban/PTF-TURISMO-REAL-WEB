@@ -1,7 +1,6 @@
 package controlador;
 
 import clases.Usuario;
-import dao.GaleriaDAO;
 import dao.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,7 +17,6 @@ public class LoginController extends HttpServlet {
 
     UsuarioDAO dao = new UsuarioDAO();
     Usuario u = new Usuario();
-    GaleriaDAO galeria = new GaleriaDAO();
 
     int nivel = 0;
     int r = 0;
@@ -64,7 +62,6 @@ public class LoginController extends HttpServlet {
                 int verificaDatos = dao.existenciaDatosUsuario(id);
 
                 if (verificaDatos != 0) {
-                    galeria.CargaCarpetaGaleria();
                     if (nivel == 2) {
                         RequestDispatcher rd = request.getRequestDispatcher("homeFuncionario.jsp");
                         rd.include(request, response);
