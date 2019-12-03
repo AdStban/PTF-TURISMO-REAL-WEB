@@ -16,14 +16,14 @@
 
         <script src="asset/js/validar.js" type="text/javascript"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+        <link rel="icon" type="png" href="asset/img/logo.png" />
 
         <title>Sección de Reserva</title>
     </head>
     <body>
         <div id="header">
-             <%@ include file="cabeceras/header.jsp" %>
-         </div>
+            <%@ include file="cabeceras/header.jsp" %>
+        </div>
 
 
         <section id="form-reserva">   
@@ -31,15 +31,15 @@
                 <form name="frm" action="ReservaController" method="post">
                     <div class="row">
                         <div class="col-md-6" id="blaBla" style="margin-top: -75px;">
-                            <img src="http://imgcf.ecn.cl/600/1a/1a66f532621a11ded945caee51b923dc1dc6d078.bin.jpg" alt="Image" width="600" height="600" class="img-fluid rounded mb-4" style="border: 7px #08c solid">
+                            <img src="http://imgcf.ecn.cl/600/1a/1a66f532621a11ded945caee51b923dc1dc6d078.bin.jpg" alt="Image" width="430" height="430" class="img-fluid rounded mb-4" style="border: 7px #08c solid">
                             <h3>¿Estás listo para reservar? <b>Sin duda alguna estás en el mejor lugar.</b></h3>
                             <p>Turismo Real es la empresa <b>N°1</b> del país.</p>
                         </div>
-                        
+
                         <div class="col-md-6" style="margin-top: -80px;">
                             <h2 style="margin-left: 60px;">Formulario Reserva</h2>
                             <br>
-                            
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-gorup">
@@ -51,21 +51,13 @@
                                 <div class="col-md-6">
                                     <div class="form-gorup">
                                         <label>Fecha Hasta</label>
-                                        <input id="txtHasta" oninput="dias()" type="date" name="txtFechaHasta" class="form-control" required> 
+                                        <input id="txtHasta"  type="date" name="txtFechaHasta" class="form-control" required> 
                                     </div>
                                 </div>
 
                                 <div class="col-md-12">
                                     <div class="form-gorup">
-                                        <label style="margin-top: 5px;">Cant.Días</label>
-                                        <input id="txtDias" type="number" name="txtDias" class="form-control" required> 
-                                    </div>
-                                </div>
-
-
-                                <div class="col-md-12">
-                                    <div class="form-gorup">
-                                        <label style="margin-top: 5px;">Valor</label>
+                                        <label style="margin-top: 5px;">Valor x día</label>
                                         <input type="number" name="txtValor" class="form-control" value="${valor}" required readonly="true">
                                         <br>
                                     </div>
@@ -77,7 +69,7 @@
                                         <input id="txtPersonas" type="number" name="txtPersonas" class="form-control" required> 
                                     </div>
                                 </div>
-                                        
+
                                 <div class="dropdown-divider" id="divider"></div>
                                 <h2 style="text-align: center;">Servicio adicional</h2>
                                 <div class="col-md-12 " style="margin-top: -20px;">
@@ -87,9 +79,9 @@
                                             <option value="0">Elija una opción...</option>
                                             <jsp:useBean class="dao.ServicioDAO" id="servicioDAO"></jsp:useBean>  
                                             <c:forEach items="${servicioDAO.listar()}" var="servicio">
-                                                
+
                                                 <option value="${servicio.getId_servicio()}">${servicio.getDescripcion()}, Valor: $ ${servicio.getCosto_servicio()}</option>
-                                                
+
                                             </c:forEach>
                                         </select>
 
@@ -116,8 +108,8 @@
         </section>
 
         <div id="footer">
-             <%@ include file="cabeceras/footer.jsp" %>
-         </div>                     
+            <%@ include file="cabeceras/footer.jsp" %>
+        </div>                     
         <%--
         Esto se agrego para el estilo
         --%>

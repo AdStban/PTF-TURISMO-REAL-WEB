@@ -2,6 +2,7 @@ package dao;
 
 import clases.Conexion;
 import clases.Departamento;
+import clases.Galeria;
 import clases.Usuario;
 import java.sql.Connection;
 
@@ -19,6 +20,7 @@ public class DepartamentoDAO {
     PreparedStatement ps;
     ResultSet rs;
     int r;
+    int respuesta;
 
     public List<Departamento> listar() {
         String sql = "SELECT d.ID_DEPARTAMENTO, d.COSTO_DEPARTAMENTO,d.TIPO_DEPARTAMENTO, d.DIRECCION_DEPARTAMENTO,c.NOMBRE_COMUNA,i.DORMITORIO_INVENTARIO,i.BANIO_INVENTARIO\n"
@@ -97,7 +99,6 @@ public class DepartamentoDAO {
             ps.setDate(3, new java.sql.Date(desde.getTime()));
             ps.setDate(4, new java.sql.Date(hasta.getTime()));
             ps.setString(5, lugar);
-            
 
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -110,6 +111,78 @@ public class DepartamentoDAO {
                 d.setHabitaciones(rs.getInt(6));
                 d.setBanio(rs.getInt(7));
                 lista.add(d);
+            }
+
+        } catch (Exception e) {
+        }
+        return lista;
+    }
+
+    public int registrarImagen(Galeria ga) {
+        String sql = "INSERT INTO GALERIA (ID_GALERIA,UBICACION_GALERIA, ID_DEPARTAMENTO,NOMBRE_GALERIA) VALUES (SQ_IDGALERIA.nextval,?,?,?)";
+
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, ga.getUbicacion());
+            ps.setInt(2, ga.getId_depto());
+            ps.setString(3, ga.getNom_foto());
+
+            respuesta = ps.executeUpdate();
+
+            if (respuesta == 1) {
+                return 1;
+            } else {
+                return 0;
+            }
+
+        } catch (Exception e) {
+            return 0;
+        }
+
+    }
+
+    public List<Galeria> obtenerImagen(int codigo) {
+
+        String sql = "select UBICACION_GALERIA from galeria\n"
+                + "where ID_DEPARTAMENTO=? and ROWNUM=1";
+        List<Galeria> lista = new ArrayList();
+        try {
+            r = 0;
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, codigo);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Galeria ga = new Galeria();
+                ga.setUbicacion(rs.getString(1));
+                
+                lista.add(ga);
+            }
+
+        } catch (Exception e) {
+        }
+        return lista;
+    }
+    
+    public List<Galeria> obtenerTodasLasImagenes(int codigo) {
+
+        String sql = "select UBICACION_GALERIA from galeria\n"
+                + "where ID_DEPARTAMENTO=?";
+        List<Galeria> lista = new ArrayList();
+        try {
+            r = 0;
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, codigo);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Galeria ga = new Galeria();
+                ga.setUbicacion(rs.getString(1));
+                
+                lista.add(ga);
             }
 
         } catch (Exception e) {

@@ -48,11 +48,11 @@
         </div>
 
         <section id="info-dep" style="padding-top: 60px;">
-          
-            
+
+
             <h2 class="text-info" style="margin-left: 200px">${msgResultado}</h2>
-            
-            
+
+
             <div class="site-section site-section-sm bg-light">
                 <div class="container">
 
@@ -62,17 +62,18 @@
                         <c:forEach items="${departamentoDAO.buscarDepartamento(nomlugar,fechadesde,fechahasta)}" var="depto">
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="property-entry h-100">
+                                    <c:forEach items="${departamentoDAO.obtenerImagen(depto.getId_departamento())}" var="img">
+                                        <a href="DepartamentoController?idDepto=${depto.getId_departamento()}" class="property-thumbnail">
 
-                                    <a href="DepartamentoController?idDepto=${depto.getId_departamento()}" class="property-thumbnail">
-
-                                        <div class="offer-type-wrap">
-                                            <span class="offer-type bg-success">${depto.getTipo_departamento()}</span>
-                                        </div>
-                                        <img src="asset/img/img_1.jpg" alt="Image" class="img-fluid">
-                                    </a>
+                                            <div class="offer-type-wrap">
+                                                <span class="offer-type bg-success">${depto.getTipo_departamento()}</span>
+                                            </div>
+                                            <img src="asset/img/${img.getUbicacion()}" alt="Image" class="img-fluid">
+                                        </a>
+                                    </c:forEach>
                                     <div class="p-4 property-body">
                                         <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-                                        <h2 class="property-title"><a href="property-details.html">${depto.getNom_comuna()}</a></h2>
+                                        <h2 class="property-title"><a href="DepartamentoController?idDepto=${depto.getId_departamento()}">${depto.getNom_comuna()}</a></h2>
                                         <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span>${depto.getDireccion_departamento()}</span>
                                         <strong class="property-price text-primary mb-3 d-block text-success">$${depto.getCosto_departamento()}</strong>
                                         <ul class="property-specs-wrap mb-3 mb-lg-0">

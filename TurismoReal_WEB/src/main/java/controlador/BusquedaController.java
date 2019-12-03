@@ -76,6 +76,7 @@ public class BusquedaController extends HttpServlet {
             String textoResultado;
             List<Departamento> verifica = dao.buscarDepartamento(lugar, desde, hasta);
 
+            verifica.listIterator();
             if (verifica.isEmpty()) {
                 out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
                 out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");

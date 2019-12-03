@@ -20,6 +20,16 @@ public class Persona {
         this.direccion = direccion;
         this.fecha_nacimiento = fecha_nacimiento;
     }
+
+    public Persona(int id_usuario, String rut, String nombre, String contacto, String direccion) {
+        this.id_usuario = id_usuario;
+        this.rut = rut;
+        this.nombre = nombre;
+        this.contacto = contacto;
+        this.direccion = direccion;
+    }
+    
+    
     
     public int getId_datos() {
         return id_datos;

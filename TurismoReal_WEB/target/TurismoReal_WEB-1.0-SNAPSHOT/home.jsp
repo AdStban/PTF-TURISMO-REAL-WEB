@@ -16,8 +16,8 @@
         <!--Llamada a hoja de estilos-->
         <link href="asset/css/estilos.css" rel="stylesheet">
         <!--LLamada al buscador de la tabla-->
-        <script src="asset/js/buscadorTabla.js" type="text/javascript"></script>
-
+        <script src="asset/js/validar.js" type="text/javascript"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <link rel="stylesheet" href="asset/fonts/icomoon/style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,900|Roboto+Mono:300,400,500"> 
 
@@ -33,15 +33,16 @@
         <link rel="stylesheet" href="asset/css/fl-bigmug-line.css">
         <link rel="stylesheet" href="asset/css/aos.css">
 
-<link rel="icon" type="png" href="asset/img/logo.png" />
+        <link rel="icon" type="png" href="asset/img/logo.png" />
         <link rel="stylesheet" href="asset/css/style.css">
 
     </head>
     <body>
+        <section id="cabecera">
         <div id="header">
             <%@ include file="cabeceras/header.jsp" %>
         </div>
-
+        </section>
         <section id="user">
             <div class="container">
                 <h2>Bienvenido(a) <c:out value="${email}"></c:out></h2>
@@ -85,7 +86,7 @@
             <div class="site-section site-section-sm pb-0">
                 <div class="container">
                     <div class="row">
-                    <form name="formBuscar" action="BusquedaController" method="post" class="form-search col-md-12" style="margin-top: -100px;">
+                        <form name="formBuscar" action="BusquedaController" method="post" class="form-search col-md-12" style="margin-top: -100px;">
                             <div class="row  align-items-end">
                                 <div class="col-md-3">
                                     <label for="list-types">Elige el lugar</label>
@@ -93,34 +94,34 @@
                                     <div class="select-wrap">
                                         <span class="icon icon-arrow_drop_down"></span>
 
-                                        <select name="slcLugar" id="list-types" class="form-control d-block rounded-0">
+                                        <select id="lugar" name="slcLugar" id="list-types" class="form-control d-block rounded-0">
                                             <option value="0">Selecione lugar...</option>
                                         <jsp:useBean class="dao.ComunaDAO" id="comunaDAO"></jsp:useBean>  
                                         <c:forEach items="${comunaDAO.listar()}" var="comuna">
 
                                             <option value="${comuna.getNombre_comuna()}">${comuna.getNombre_comuna()}</option>
                                         </c:forEach>
-                                        </select>
+                                    </select>
 
                                 </div>
 
                             </div>
                             <div class="col-md-3">
-                                <label for="offer-types">Check in</label>
+                                <label for="offer-types">Desde</label>
                                 <!--<div class="datepicker-inline">
                                     <input type="text" name="txtDesde" class="datepicker" placeholder="Desde">
                                 </div>-->
-                                <input type="date" name="txtDesde">
+                                <input id="desde" type="date" name="txtDesde">
                             </div>
                             <div class="col-md-3">
-                                <label for="offer-types">Check out</label>
+                                <label for="offer-types">Hasta</label>
                                 <!--<div class="datepicker-inline">
                                     <input type="text" name="txtHasta" class="datepicker" placeholder="Hasta">
                                 </div>-->
-                                <input type="date" name="txtHasta">
+                                <input id="hasta" type="date" name="txtHasta">
                             </div>
                             <div class="col-md-3">
-                                <input type="submit" class="btn btn-success text-white btn-block rounded-0" name="accion" value="Buscar">
+                                <input type="submit" onclick="return validarBuscador();" class="btn btn-success text-white btn-block rounded-0" name="accion" value="Buscar">
                             </div>
                         </div>
                     </form>
@@ -144,16 +145,19 @@
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="property-entry h-100">
 
-                                    <a href="DepartamentoController?idDepto=${depto.getId_departamento()}" class="property-thumbnail">
-
+                                    
+                                    <c:forEach items="${departamentoDAO.obtenerImagen(depto.getId_departamento())}" var="img">
+                                    <a type="submit" href="DepartamentoController?idDepto=${depto.getId_departamento()}" class="property-thumbnail">
+                                        <input type="hidden" name="txtIdDepto" value="${depto.getId_departamento()}">
                                         <div class="offer-type-wrap">
                                             <span class="offer-type bg-success">${depto.getTipo_departamento()}</span>
                                         </div>
-                                        <img src="asset/img/img_1.jpg" alt="Image" class="img-fluid">
+                                        <img src="asset/img/${img.getUbicacion()}" alt="Image" class="img-fluid">
                                     </a>
+                                    </c:forEach>
                                     <div class="p-4 property-body">
                                         <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-                                        <h2 class="property-title"><a href="property-details.html">${depto.getNom_comuna()}</a></h2>
+                                        <h2 class="property-title"><a href="DepartamentoController?idDepto=${depto.getId_departamento()}">${depto.getNom_comuna()}</a></h2>
                                         <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span>${depto.getDireccion_departamento()}</span>
                                         <strong class="property-price text-primary mb-3 d-block text-success">$${depto.getCosto_departamento()}</strong>
                                         <ul class="property-specs-wrap mb-3 mb-lg-0">
@@ -167,7 +171,7 @@
                                                 <span class="property-specs-number">${depto.getBanio()}</span>
 
                                             </li>
-                                            
+
                                         </ul>
 
                                     </div>

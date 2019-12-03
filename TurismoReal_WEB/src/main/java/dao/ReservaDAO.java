@@ -129,7 +129,7 @@ public class ReservaDAO {
             return 0;
         }
     }
-    
+
     public int retornaIdDetalle() {
 
         String cadena = "select max(ID_DETALLE) from DETALLE_RESERVA";
@@ -154,8 +154,8 @@ public class ReservaDAO {
             return 0;
         }
     }
-    
-    public int registrarServicio(int de,int se) {
+
+    public int registrarServicio(int de, int se) {
         String sql = "INSERT INTO DR_SERVICIO (ID_DETALLE,ID_SERVICIO) VALUES (?,?)";
 
         try {
@@ -163,7 +163,7 @@ public class ReservaDAO {
             ps = con.prepareStatement(sql);
             ps.setInt(1, de);
             ps.setInt(2, se);
-            
+
             respuesta = ps.executeUpdate();
 
             if (respuesta == 1) {
@@ -178,7 +178,7 @@ public class ReservaDAO {
 
     }
 
-    public int registroReserva(int de,int re) {
+    public int registroReserva(int de, int re) {
         String sql = "INSERT INTO REGISTRO_RESERVA (ID_REGISTRO,FECHA_RESERVA,ID_DEPARTAMENTO,ID_RESERVA) VALUES (sq_reservaRegistro.nextval,sysdate,?,?)";
 
         try {
@@ -186,7 +186,7 @@ public class ReservaDAO {
             ps = con.prepareStatement(sql);
             ps.setInt(1, de);
             ps.setInt(2, re);
-            
+
             respuesta = ps.executeUpdate();
 
             if (respuesta == 1) {
@@ -200,6 +200,7 @@ public class ReservaDAO {
         }
 
     }
+
     //Retorno de ID sesion iniciada
     public int retornoId(Usuario u) {
         String sql = "select id_usuario from usuario where correo_usuario=?";
@@ -227,7 +228,7 @@ public class ReservaDAO {
             return 0;
         }
     }
-    
+
     public List<ServicioExtra> obtenerDatosServicio(int idServicio) {
 
         String sql = "select ID_SERVICIO,DESCRIPCION_SERVICIO,COSTO_SERVICIO from SERVICIO_EXTRA WHERE ID_SERVICIO=?";
@@ -251,6 +252,41 @@ public class ReservaDAO {
         }
         return lista;
     }
-    
-    
+
+    public List obtenerDatosReserva(String correo) {
+
+        String sql = "select rr.FECHA_RESERVA,co.NOMBRE_COMUNA,dr.TOTAL_DETALLE,dr.RESTANTE_DETALLE,dr.ABONO_DETALLE,r.FECHAIN_RESERVA||' al '||r.FECHATER_RESERVA\n"
+                + "from REGISTRO_RESERVA rr \n"
+                + "join RESERVA r on rr.ID_RESERVA = r.ID_RESERVA\n"
+                + "join DEPARTAMENTO d on rr.ID_DEPARTAMENTO = d.ID_DEPARTAMENTO \n"
+                + "join COMUNA co on d.ID_COMUNA = co.ID_COMUNA\n"
+                + "join DETALLE_RESERVA dr on r.ID_RESERVA = dr.ID_RESERVA\n"
+                + "join USUARIO us on r.ID_USUARIO = us.ID_USUARIO\n"
+                + "where us.CORREO_USUARIO = ?";
+        
+        List lista = new ArrayList();
+        
+        try {
+            r = 0;
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, correo);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                lista.add(rs.getDate(1));
+                lista.add(rs.getString(2));
+                lista.add(rs.getInt(3));
+                lista.add(rs.getInt(4));
+                lista.add(rs.getInt(5));
+                lista.add(rs.getString(6));
+
+            }
+
+        } catch (Exception e) {
+        }
+        return lista;
+    }
+
 }

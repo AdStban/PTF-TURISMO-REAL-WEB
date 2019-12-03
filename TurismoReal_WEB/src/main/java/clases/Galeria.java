@@ -7,55 +7,55 @@ package clases;
 
 /**
  *
- * @author joser
+ * @author Adán Esteban
  */
 public class Galeria {
-    int Id_galeria;
-    String Ubicacion_galeria;
-    int Id_departamento;
-    String Nombre_galeria;
+   int id_foto;
+   String ubicacion;
+   int id_depto;
+   String nom_foto;
 
-    public Galeria(){
-        
-    }
-    public Galeria(int Id_galeria, String Ubicacion_galeria, int Id_departamento, String Nombre_galeria) {
-        this.Id_galeria = Id_galeria;
-        this.Ubicacion_galeria = Ubicacion_galeria;
-        this.Id_departamento = Id_departamento;
-        this.Nombre_galeria = Nombre_galeria;
+    public Galeria() {
     }
 
-    public int getId_galeria() {
-        return Id_galeria;
+    public Galeria(int id_foto, String ubicacion, int id_depto, String nom_foto) {
+        this.id_foto = id_foto;
+        this.ubicacion = ubicacion;
+        this.id_depto = id_depto;
+        this.nom_foto = nom_foto;
     }
 
-    public void setId_galeria(int Id_galeria) {
-        this.Id_galeria = Id_galeria;
+    public int getId_foto() {
+        return id_foto;
     }
 
-    public String getUbicacion_galeria() {
-        return Ubicacion_galeria;
+    public void setId_foto(int id_foto) {
+        this.id_foto = id_foto;
     }
 
-    public void setUbicacion_galeria(String Ubicacion_galeria) {
-        this.Ubicacion_galeria = Ubicacion_galeria;
+    public String getUbicacion() {
+        return ubicacion;
     }
 
-    public int getId_departamento() {
-        return Id_departamento;
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
-    public void setId_departamento(int Id_departamento) {
-        this.Id_departamento = Id_departamento;
+    public int getId_depto() {
+        return id_depto;
     }
 
-    public String getNombre_galeria() {
-        return Nombre_galeria;
+    public void setId_depto(int id_depto) {
+        this.id_depto = id_depto;
     }
 
-    public void setNombre_galeria(String Nombre_galeria) {
-        this.Nombre_galeria = Nombre_galeria;
+    public String getNom_foto() {
+        return nom_foto;
     }
-    
-    
+
+    public void setNom_foto(String nom_foto) {
+        this.nom_foto = nom_foto;
+    }
+   
+   
 }

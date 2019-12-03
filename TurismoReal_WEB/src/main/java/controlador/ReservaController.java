@@ -58,7 +58,7 @@ public class ReservaController extends HttpServlet {
                 break;
             case "Siguiente":
 
-                request.getSession().setAttribute("dias", request.getParameter("txtDias"));
+                
                 request.getSession().setAttribute("personas", request.getParameter("txtPersonas"));
                 request.getSession().setAttribute("servicio", opcionServicio);
 
@@ -111,9 +111,16 @@ public class ReservaController extends HttpServlet {
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
                     String fechad = sdf.format(fecha_inicio);
                     String fechat = sdf.format(fecha_termino);
-
                     request.getSession().setAttribute("fechaDesde", fechad);
                     request.getSession().setAttribute("fechaHasta", fechat);
+                    
+                    
+ 
+                    int dias =(int) ((fecha_termino.getTime()-fecha_inicio.getTime())/86400000);
+                    request.getSession().setAttribute("dias", dias);
+                    
+
+                    
                     request.getRequestDispatcher("detalleReserva.jsp").forward(request, response);
 
                 } catch (Exception e) {
