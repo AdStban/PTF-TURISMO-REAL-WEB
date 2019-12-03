@@ -39,7 +39,7 @@
 
 
         <link rel="stylesheet" href="asset/css/style.css">
-
+        <link rel="icon" type="png" href="asset/img/logo.png" />
         <title>Resultado busqueda</title>
     </head>
     <body>
@@ -78,12 +78,12 @@
                                         <strong class="property-price text-primary mb-3 d-block text-success">$${depto.getCosto_departamento()}</strong>
                                         <ul class="property-specs-wrap mb-3 mb-lg-0">
                                             <li>
-                                                <span class="property-specs">Beds</span>
+                                                <span class="property-specs">Dormitorios</span>
                                                 <span class="property-specs-number">${depto.getHabitaciones()} <sup>+</sup></span>
 
                                             </li>
                                             <li>
-                                                <span class="property-specs">Baths</span>
+                                                <span class="property-specs">Baños</span>
                                                 <span class="property-specs-number">${depto.getBanio()}</span>
 
                                             </li>

@@ -21,6 +21,7 @@
 
         <script src="asset/js/validar.js" type="text/javascript"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link rel="icon" type="png" href="asset/img/logo.png" />
         <title>Reservas realizadas</title>
     </head>
     <body>
@@ -52,8 +53,12 @@
                 <c:forEach items="${reservaDAO.obtenerDatosReserva(email)}" var="reserva">
 
                     <tr>
-                        <td>${reserva}</td>
-                        
+                        <td>${reserva.getFecha_reserva()}</td>
+                        <td>${reserva.getNombre_comuna()}</td>
+                        <td>${reserva.getTotal_detalle()}</td>
+                        <td>${reserva.getRestante_detalle()}</td>
+                        <td>${reserva.getAbono()}</td>
+                        <td>${reserva.getFecha_detallada()}</td>
                     </tr>    
 
                 </c:forEach>

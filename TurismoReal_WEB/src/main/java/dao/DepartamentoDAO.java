@@ -3,7 +3,6 @@ package dao;
 import clases.Conexion;
 import clases.Departamento;
 import clases.Galeria;
-import clases.Usuario;
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;

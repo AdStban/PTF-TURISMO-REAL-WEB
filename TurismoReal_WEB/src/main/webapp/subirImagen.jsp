@@ -25,7 +25,7 @@
             <%@ include file="cabeceras/header.jsp" %>
         </div>
 
-        <h2 align="center">Cargar de departamento</h2>
+        <h2 align="center">Cargar imagen de departamento</h2>
         <form action="procesarImagen.jsp" enctype="multipart/form-data" method="post">
             <table border="0" width="400" align="center" style="margin-bottom: 400px;margin-top: 20px">
 

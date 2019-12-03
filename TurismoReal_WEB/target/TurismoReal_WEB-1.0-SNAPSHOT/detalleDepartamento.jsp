@@ -42,6 +42,7 @@
 
 
         <link rel="stylesheet" href="asset/css/style.css">
+        <link rel="icon" type="png" href="asset/img/logo.png" />
 
         <title>Detalles departamento</title>
     </head>

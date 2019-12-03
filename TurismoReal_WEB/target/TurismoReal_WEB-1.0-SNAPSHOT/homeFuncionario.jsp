@@ -20,6 +20,7 @@
 
         <script src="asset/js/validar.js" type="text/javascript"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link rel="icon" type="png" href="asset/img/logo.png" />
         <title>Home funcionario</title>
     </head>
     <body>

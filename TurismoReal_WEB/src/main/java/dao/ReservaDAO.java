@@ -2,6 +2,7 @@ package dao;
 
 import clases.Conexion;
 import clases.DetalleReserva;
+import clases.HistorialReserva;
 import clases.Reserva;
 import clases.ServicioExtra;
 import clases.Usuario;
@@ -253,7 +254,7 @@ public class ReservaDAO {
         return lista;
     }
 
-    public List obtenerDatosReserva(String correo) {
+    public List<HistorialReserva> obtenerDatosReserva(String correo) {
 
         String sql = "select rr.FECHA_RESERVA,co.NOMBRE_COMUNA,dr.TOTAL_DETALLE,dr.RESTANTE_DETALLE,dr.ABONO_DETALLE,r.FECHAIN_RESERVA||' al '||r.FECHATER_RESERVA\n"
                 + "from REGISTRO_RESERVA rr \n"
@@ -264,7 +265,7 @@ public class ReservaDAO {
                 + "join USUARIO us on r.ID_USUARIO = us.ID_USUARIO\n"
                 + "where us.CORREO_USUARIO = ?";
         
-        List lista = new ArrayList();
+        List<HistorialReserva> lista = new ArrayList();
         
         try {
             r = 0;
@@ -274,14 +275,14 @@ public class ReservaDAO {
 
             rs = ps.executeQuery();
             while (rs.next()) {
-
-                lista.add(rs.getDate(1));
-                lista.add(rs.getString(2));
-                lista.add(rs.getInt(3));
-                lista.add(rs.getInt(4));
-                lista.add(rs.getInt(5));
-                lista.add(rs.getString(6));
-
+                HistorialReserva hr = new HistorialReserva();
+                hr.setFecha_reserva(rs.getDate(1));
+                hr.setNombre_comuna(rs.getString(2));
+                hr.setTotal_detalle(rs.getInt(3));
+                hr.setRestante_detalle(rs.getInt(4));
+                hr.setAbono(rs.getInt(5));
+                hr.setFecha_detallada(rs.getString(6));
+                lista.add(hr);
             }
 
         } catch (Exception e) {
