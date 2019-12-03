@@ -13,6 +13,7 @@
         <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
         <!--Iconos-->
         <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
         <!--Llamada a hoja de estilos-->
         <link href="../asset/css/estilos.css" rel="stylesheet">
     </head>
@@ -25,7 +26,7 @@
                     <c:if test="${perfil==2}">
                     <a class="navbar-brand" href="homeFuncionario.jsp"><img src="./asset/img/logo.png" class="logo" alt="logo"></a>
                     </c:if>
-                
+
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
@@ -45,19 +46,19 @@
 
                         <c:if test="${perfil==3}">
                             <li class="nav-item">
-                                <a class="nav-link" href="muestraReservas.jsp"><i class="icon ion-md-business"></i>Ver reservas</a>
+                                <a class="nav-link" href="muestraReservas.jsp"><i class="icon ion-md-business"></i> Ver reservas</a>
                             </li>
                         </c:if>
                         <c:if test="${perfil==1 || perfil==2}">
                             <li class="nav-item">
-                                <a class="nav-link" href="subirImagen.jsp"><i class="icon_upload"></i>Subir imagen</a>
+                                <a class="nav-link" href="subirImagen.jsp"><i class="ion ion-md-images"></i> Subir imagen</a>
                             </li>
                         </c:if>
 
                         <c:if test="${perfil==1 || perfil==2}">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="icon ion-md-folder"></i>Registros
+                                    <i class="icon ion-md-folder"></i> Registros
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="checkin.jsp">Check in</a>
@@ -65,15 +66,11 @@
                                     <a class="dropdown-item" href="checkout.jsp">Check out</a>
                                 </div>
                             </li>
+                           
                         </c:if>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Cerrar sesión
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="logout.jsp">Salir</a>
-                            </div>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="logout.jsp"><i class="ion ion-md-power"> Cerrar sesión</i></a>
+                            </li>
                     </ul>
                 </div>
             </div>

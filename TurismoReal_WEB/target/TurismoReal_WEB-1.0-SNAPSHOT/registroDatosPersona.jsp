@@ -26,16 +26,8 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-
-
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Cerrar sesión
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="logout.jsp">Salir</a>
-                            </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.jsp"><i class="ion ion-md-power"> Cerrar sesión</i></a>
                         </li>
                     </ul>
                 </div>
@@ -109,15 +101,13 @@
 
                                 <div class="col-md-6" style="margin-top: 10px;">
                                     <input class="btn btn-dark full-width" type="submit" onclick="return validarRegistroDatos();" name="accion" value="Guardar"> 
-                                    <td>
-                                
-                            </td>
+
+
+
                                 </div>
 
 
-                                <div class="mensaje">
-                                    <%=request.getAttribute("mensaje") != null ? request.getAttribute("mensaje") : ""%>
-                                </div>
+
                             </div>
                         </div>
                     </div>

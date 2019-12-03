@@ -243,7 +243,7 @@ function validarRegistroDatos() {
 
     // Obtención fecha actual.
     // Obtención fecha actual.
-    var fecha_actual = new Date();
+    fecha_actual = new Date();
     var dd = fecha_actual.getDate();
     var mm = fecha_actual.getMonth() + 1;
     var yyyy = fecha_actual.getFullYear();
