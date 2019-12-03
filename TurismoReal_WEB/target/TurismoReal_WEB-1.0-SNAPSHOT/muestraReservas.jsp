@@ -32,6 +32,7 @@
         </c:if>
 
         <table class="table" style="margin-bottom: 310px">
+
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Fecha reserva</th>
@@ -42,14 +43,20 @@
                     <th scope="col">Fechas reservadas</th>
                 </tr>
             </thead>
+
             <tbody>
 
-                <tr>
-                    <jsp:useBean class="dao.ReservaDAO" id="reservaDAO"></jsp:useBean>
-                    <c:forEach items="${reservaDAO.obtenerDatosReserva(email)}" var="reserva">
-                        <th>${reserva}</th>
-                        </c:forEach>
-                </tr>
+
+                
+                <jsp:useBean class="dao.ReservaDAO" id="reservaDAO"></jsp:useBean>
+                <c:forEach items="${reservaDAO.obtenerDatosReserva(email)}" var="reserva">
+
+                    <tr>
+                        <td>${reserva}</td>
+                        
+                    </tr>    
+
+                </c:forEach>
 
             </tbody>
 

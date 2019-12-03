@@ -1,5 +1,6 @@
 controlador\BusquedaController.class
 controlador\RegisterController.class
+clases\Galeria.class
 clases\Validar.class
 controlador\RegistroDatosPersona.class
 dao\DepartamentoDAO.class

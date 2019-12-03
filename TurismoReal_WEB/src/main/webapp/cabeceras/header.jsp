@@ -20,23 +20,21 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <c:if test="${perfil==3 || perfil==1}">
-                <a class="navbar-brand" href="home.jsp"><img src="./asset/img/logo.png" class="logo" alt="logo"></a>
-                </c:if>
-                <c:if test="${perfil==2}">
-                <a class="navbar-brand" href="homeFuncionario.jsp"><img src="./asset/img/logo.png" class="logo" alt="logo"></a>
-                </c:if>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="icon ion-md-menu"></i>
-                </button>
+                    <a class="navbar-brand" href="home.jsp"><img src="./asset/img/logo.png" class="logo" alt="logo"></a>
+                    </c:if>
+                    <c:if test="${perfil==2}">
+                    <a class="navbar-brand" href="homeFuncionario.jsp"><img src="./asset/img/logo.png" class="logo" alt="logo"></a>
+                    </c:if>
+                
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <c:if test="${perfil==3 || perfil==1}">
-                            <a class="nav-link" href="home.jsp"><i class="icon ion-md-home"></i> Home</a>
+                                <a class="nav-link" href="home.jsp"><i class="icon ion-md-home"></i> Home</a>
                             </c:if>
                             <c:if test="${perfil==2}">
-                            <a class="nav-link" href="homeFuncionario.jsp"><i class="icon ion-md-home"></i> Home</a>
+                                <a class="nav-link" href="homeFuncionario.jsp"><i class="icon ion-md-home"></i> Home</a>
                             </c:if>
                         </li>
                         <li class="nav-item">
@@ -48,6 +46,11 @@
                         <c:if test="${perfil==3}">
                             <li class="nav-item">
                                 <a class="nav-link" href="muestraReservas.jsp"><i class="icon ion-md-business"></i>Ver reservas</a>
+                            </li>
+                        </c:if>
+                        <c:if test="${perfil==1 || perfil==2}">
+                            <li class="nav-item">
+                                <a class="nav-link" href="subirImagen.jsp"><i class="icon_upload"></i>Subir imagen</a>
                             </li>
                         </c:if>
 

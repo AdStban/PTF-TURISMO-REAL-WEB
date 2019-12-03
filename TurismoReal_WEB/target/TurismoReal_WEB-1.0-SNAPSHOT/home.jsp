@@ -38,10 +38,11 @@
 
     </head>
     <body>
+        <section id="cabecera">
         <div id="header">
             <%@ include file="cabeceras/header.jsp" %>
         </div>
-
+        </section>
         <section id="user">
             <div class="container">
                 <h2>Bienvenido(a) <c:out value="${email}"></c:out></h2>
@@ -144,14 +145,16 @@
                             <div class="col-md-6 col-lg-4 mb-4">
                                 <div class="property-entry h-100">
 
+                                    
+                                    <c:forEach items="${departamentoDAO.obtenerImagen(depto.getId_departamento())}" var="img">
                                     <a type="submit" href="DepartamentoController?idDepto=${depto.getId_departamento()}" class="property-thumbnail">
                                         <input type="hidden" name="txtIdDepto" value="${depto.getId_departamento()}">
                                         <div class="offer-type-wrap">
                                             <span class="offer-type bg-success">${depto.getTipo_departamento()}</span>
                                         </div>
-                                        <img src="asset/img/img_1.jpg" alt="Image" class="img-fluid">
+                                        <img src="asset/img/${img.getUbicacion()}" alt="Image" class="img-fluid">
                                     </a>
-
+                                    </c:forEach>
                                     <div class="p-4 property-body">
                                         <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
                                         <h2 class="property-title"><a href="DepartamentoController?idDepto=${depto.getId_departamento()}">${depto.getNom_comuna()}</a></h2>

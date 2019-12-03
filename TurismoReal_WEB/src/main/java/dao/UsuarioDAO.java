@@ -244,8 +244,8 @@ public class UsuarioDAO implements Validar {
     public int modificaDatos(Persona p) {
         String sql = "update DATOS_PERSONA \n"
                 + "set NOMBRE_DATOS=?,RUT_DATOS=?,CONTACTO_DATOS=?,DIRECCION_DATOS=?\n"
-                + "where ID_USUARIO = ?";
-
+                + "where ID_USUARIO ="+p.getId_usuario();
+        
         
         try {
             con = cn.getConnection();
@@ -254,7 +254,7 @@ public class UsuarioDAO implements Validar {
             ps.setString(2, p.getRut());
             ps.setString(3, p.getContacto());
             ps.setString(4, p.getDireccion());
-            ps.setInt(5, p.getId_usuario());
+            
             respuesta = ps.executeUpdate();
 
             if (respuesta == 1) {

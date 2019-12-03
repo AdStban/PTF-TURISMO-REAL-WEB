@@ -64,7 +64,7 @@ public class ModificaDatosController extends HttpServlet {
                     out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
                     out.println("<script>");
                     out.println("$(document).ready(function(){");
-                    out.println("swal('Registro exitoso','Se han modificado correctamente los datos','success');");
+                    out.println("swal('Modificación exitosa','Se han modificado correctamente los datos','success');");
                     out.println("});");
                     out.println("</script>");
                     RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
@@ -74,7 +74,7 @@ public class ModificaDatosController extends HttpServlet {
                     out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
                     out.println("<script>");
                     out.println("$(document).ready(function(){");
-                    out.println("swal('Registro exitoso','Se han modificado correctamente los datos','success');");
+                    out.println("swal('Modificación exitosa','Se han modificado correctamente los datos','success');");
                     out.println("});");
                     out.println("</script>");
                     RequestDispatcher rd = request.getRequestDispatcher("homeFuncionario.jsp");

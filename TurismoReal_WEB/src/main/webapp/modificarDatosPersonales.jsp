@@ -50,7 +50,7 @@
                                     <div class="col-md-6">
                                         <div class="form-gorup">
                                             <label>Rut:</label>
-                                            <input id="txtRut" type="text" name="txtRut" class="form-control" value="${per.getRut()}"> 
+                                            <input id="txtRut" type="text" name="txtRut" class="form-control" value="${per.getRut()}" readonly="true"> 
                                         </div>
                                     </div>
                                     <div class="col-md-6">
