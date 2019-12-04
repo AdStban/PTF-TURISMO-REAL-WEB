@@ -103,7 +103,7 @@
               </h5>
               <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="body-text">
-                  <p>Si todavía no tienes una cuenta en Turismo Real, accede a TurismoReal.cl y pulsa en Regï¿½strate.
+                  <p>Si todavía no tienes una cuenta en Turismo Real, accede a TurismoReal.cl y pulsa en Registrate.
                      Puedes registrarte utilizando tu dirección de correo electrónico. 
                      Registrarse y crear una cuenta en Turismo Real es gratuito.
                      Después de hacerlo, asegúrate de completar tu cuenta antes de reservar.</p>

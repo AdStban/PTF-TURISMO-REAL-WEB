@@ -724,3 +724,24 @@ function calcularEdad()
     }
 }
 
+function validarCheckbox() {
+    if ($('input[type=checkbox]:checked').length === 0) {
+        swal({
+            title: "Advertencia",
+            text: "Debes seleccionar un estado",
+            icon: "warning",
+        });
+        return false;
+    } else {
+        if ($('input[type=checkbox]:checked').length === 2) {
+            swal({
+            title: "Advertencia",
+            text: "Debes seleccionar solo un estado",
+            icon: "warning",
+        });
+        return false;   
+        }
+    }
+
+}
+
