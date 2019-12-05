@@ -127,9 +127,9 @@ public class DepartamentoDAO {
             ps.setInt(2, ga.getId_depto());
             ps.setString(3, ga.getNom_foto());
 
-            respuesta = ps.executeUpdate();
+            rs = ps.executeQuery();
 
-            if (respuesta == 1) {
+            if (rs!=null) {
                 return 1;
             } else {
                 return 0;

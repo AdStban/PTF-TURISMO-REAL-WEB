@@ -20,14 +20,14 @@
 
         <link rel="icon" type="png" href="asset/img/logo.png" />
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <title>JSP Page</title>
+        <title>Finalizar subida</title>
     </head>
     <body>
         
 
         <section id="form-reserva">   
             <div class="container"> 
-                <form name="frm" action="SubirImagenesController" method="get">
+                <form name="frm" action="SubirImagenesController" method="post">
 
                     <div class="row">
                         <div class="col-md-6" id="blaBla" style="margin-top: -75px;">

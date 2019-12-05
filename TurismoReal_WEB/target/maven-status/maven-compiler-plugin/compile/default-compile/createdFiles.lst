@@ -6,13 +6,17 @@ clases\DetalleReserva.class
 clases\Reserva.class
 clases\Departamento.class
 clases\Persona.class
+controlador\InventarioController.class
 clases\Comuna.class
 controlador\ModificaDatosController.class
 clases\Usuario.class
 clases\Conexion.class
 dao\UsuarioDAO.class
+dao\InventarioDAO.class
 controlador\BusquedaController.class
+clases\Revision.class
 dao\DepartamentoDAO.class
+controlador\RevisionController.class
 dao\ServicioDAO.class
 clases\ServicioExtra.class
 controlador\SubirImagenesController.class
@@ -20,6 +24,8 @@ controlador\LoginController.class
 dao\ComunaDAO.class
 controlador\ReservaController.class
 dao\ReservaDAO.class
+dao\RevisionDAO.class
 clases\Tour.class
 clases\HistorialReserva.class
+clases\Inventario.class
 controlador\DepartamentoController.class
